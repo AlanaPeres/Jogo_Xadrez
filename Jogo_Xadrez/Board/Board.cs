@@ -33,7 +33,7 @@ namespace Jogo_Xadrez.board
         }
 
         
-        public void ColocarPeca(ChessPieces p, Position pos)
+        public void InsertPiece(ChessPieces p, Position pos)
         {
             if (ThereIsChessPiece(pos))
             {
@@ -41,7 +41,25 @@ namespace Jogo_Xadrez.board
                 throw new BoardException("Já existe uma peça nessa posição");
             }
             Matriz[pos.Linha, pos.Coluna] = p;
+
             p.Position = pos;
+        }
+
+        public ChessPieces RemovePiece(Position pos)
+        {   
+            // caso não tenha nenhuma peça na posição informada, não retorna nada.
+            if(Peca(pos) == null)
+            {
+                return null;
+            }
+            // caso tenha alguma peça nesta posição eu jogo a peça encontrada para a variável aux e no lugar desta peça a posição volta a ser nula.
+            ChessPieces aux = Peca(pos);
+
+            aux.Position = null;
+
+            Matriz[pos.Linha, pos.Coluna] = null;
+
+            return aux;
         }
 
         public bool ReadPosition(Position pos)

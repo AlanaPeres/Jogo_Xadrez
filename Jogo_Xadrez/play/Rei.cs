@@ -2,7 +2,7 @@
 using System;
 
 
-namespace Jogo_Xadrez
+namespace Jogo_Xadrez.play
 {
     class Rei : ChessPieces //
     {

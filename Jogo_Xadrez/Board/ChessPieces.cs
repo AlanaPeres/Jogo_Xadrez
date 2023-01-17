@@ -17,5 +17,10 @@ namespace Jogo_Xadrez.board
             QuantidadeMovimentos = 0;
 
         }
+
+        public void IncrementarMovimentos()
+        {
+            QuantidadeMovimentos++;
+        }
     }
 }

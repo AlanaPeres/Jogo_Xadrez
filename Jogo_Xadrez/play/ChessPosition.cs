@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Jogo_Xadrez.board;
 
 namespace Jogo_Xadrez.play
 {
     internal class ChessPosition
     {
-
+        
         public char Coluna { get; set; }
         public int Linha { get; set; }
 
@@ -18,7 +19,11 @@ namespace Jogo_Xadrez.play
 
             Linha = linha;
         }
-
+        // transforma as posições de entrada em posições da Matriz.
+        public Position ToPosition()
+        {
+            return new Position(8 - Linha, Coluna - 'a'); 
+        }
         public override string ToString()
         {
             return "" + Coluna + Linha;
