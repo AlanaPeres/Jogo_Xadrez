@@ -22,7 +22,10 @@ namespace Jogo_Xadrez.board
             Matriz = new ChessPieces[Linhas, Colunas];
         }
 
-
+        public ChessPieces Peca(int linha, int coluna)
+        {
+            return Matriz[linha, coluna];
+        }
 
 
     }
