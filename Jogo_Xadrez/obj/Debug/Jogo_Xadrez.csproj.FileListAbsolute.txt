@@ -1,0 +1,8 @@
+C:\Users\alana\source\repos\Jogo_Xadrez\Jogo_Xadrez\bin\Debug\Jogo_Xadrez.exe.config
+C:\Users\alana\source\repos\Jogo_Xadrez\Jogo_Xadrez\bin\Debug\Jogo_Xadrez.exe
+C:\Users\alana\source\repos\Jogo_Xadrez\Jogo_Xadrez\bin\Debug\Jogo_Xadrez.pdb
+C:\Users\alana\source\repos\Jogo_Xadrez\Jogo_Xadrez\obj\Debug\Jogo_Xadrez.csproj.AssemblyReference.cache
+C:\Users\alana\source\repos\Jogo_Xadrez\Jogo_Xadrez\obj\Debug\Jogo_Xadrez.csproj.SuggestedBindingRedirects.cache
+C:\Users\alana\source\repos\Jogo_Xadrez\Jogo_Xadrez\obj\Debug\Jogo_Xadrez.csproj.CoreCompileInputs.cache
+C:\Users\alana\source\repos\Jogo_Xadrez\Jogo_Xadrez\obj\Debug\Jogo_Xadrez.exe
+C:\Users\alana\source\repos\Jogo_Xadrez\Jogo_Xadrez\obj\Debug\Jogo_Xadrez.pdb
