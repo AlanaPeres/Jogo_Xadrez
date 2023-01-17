@@ -9,9 +9,9 @@ namespace Jogo_Xadrez.board
         public int QuantidadeMovimentos { get; protected set; }//pode ser acessada por ela e por suas subclasses.
         public Board Tab { get; protected set; }
 
-        public ChessPieces(Position posicao, Board tab, Color cor ) 
+        public ChessPieces(Board tab, Color cor ) 
         {
-            Position = posicao;
+            Position = null;
             Tab = tab;
             Cor = cor;
             QuantidadeMovimentos = 0;

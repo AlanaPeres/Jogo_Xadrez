@@ -47,6 +47,8 @@
     <Compile Include="board\ChessPieces.cs" />
     <Compile Include="board\Color.cs" />
     <Compile Include="board\Position.cs" />
+    <Compile Include="play\Rei.cs" />
+    <Compile Include="play\Torre.cs" />
     <Compile Include="Print.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

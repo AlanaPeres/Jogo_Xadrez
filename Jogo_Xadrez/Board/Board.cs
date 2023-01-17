@@ -27,6 +27,11 @@ namespace Jogo_Xadrez.board
             return Matriz[linha, coluna];
         }
 
-
+        
+        public void ColocarPeca(ChessPieces p, Position pos)
+        {
+            Matriz[pos.Linha, pos.Coluna] = p;
+            p.Position = pos;
+        }
     }
 }
