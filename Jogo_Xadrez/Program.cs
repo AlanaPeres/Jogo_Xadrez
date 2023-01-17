@@ -11,11 +11,19 @@ namespace Jogo_Xadrez
         {
             Board Tab = new Board(8, 8);
 
-            Tab.ColocarPeca(new Torre(Tab, Color.Preta), new Position(0, 0));
-            Tab.ColocarPeca(new Torre(Tab, Color.Preta), new Position(1, 3));
-            Tab.ColocarPeca(new Rei(Tab, Color.Preta), new Position(2, 4));
+            try
+            {
+                Tab.ColocarPeca(new Torre(Tab, Color.Preta), new Position(0, 0));
+                Tab.ColocarPeca(new Torre(Tab, Color.Preta), new Position(1, 3));
+                Tab.ColocarPeca(new Rei(Tab, Color.Preta), new Position(9, 2));
 
-            Print.PrintBoard(Tab);
+                Print.PrintBoard(Tab);
+            }catch(BoardException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            
 
             Console.ReadLine();
         }
