@@ -120,6 +120,11 @@ namespace Jogo_Xadrez
             Console.WriteLine("\n\nAgora é a vez do jogador " + partida.Play);
 
             Console.WriteLine("Aguardando a jogada: " + partida.JogadorAtual);
+
+            if (partida.Xeque)
+            {
+                Console.WriteLine("XEQUE!");
+            }
         }
 
 

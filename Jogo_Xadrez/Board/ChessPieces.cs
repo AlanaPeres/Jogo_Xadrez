@@ -25,6 +25,11 @@ namespace Jogo_Xadrez.board
             QuantidadeMovimentos++;
         }
 
+        public void DecrementarMovimentos()
+        {
+            QuantidadeMovimentos--;
+        }
+
         //Percorre a matriz e verifica se existe uma posição válida disponível para movimentar.
         public bool ExisteMovimentosPossiveis()
         {

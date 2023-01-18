@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 using Jogo_Xadrez.board;
 
 
@@ -20,6 +21,8 @@ namespace Jogo_Xadrez.play
 
         private HashSet<ChessPieces> PecasCapturadas;
 
+        public bool Xeque { get; private set; }
+
 
         public Match()
         {
@@ -31,6 +34,8 @@ namespace Jogo_Xadrez.play
 
             TheEnd = false;
 
+            Xeque = false;
+
             Pecas = new HashSet<ChessPieces>();
 
             PecasCapturadas = new HashSet<ChessPieces>();
@@ -41,7 +46,7 @@ namespace Jogo_Xadrez.play
 
         
 
-        public void ExecutarMovimento(Position origem, Position destino)
+        public ChessPieces ExecutarMovimento(Position origem, Position destino)
         {
             ChessPieces p = Tab.RemovePiece(origem);
 
@@ -51,7 +56,7 @@ namespace Jogo_Xadrez.play
 
             Tab.InsertPiece(p, destino);
 
-            Tab.RemovePiece(destino);// se tiver alguma peça será retirada.
+            //Tab.RemovePiece(destino);// se tiver alguma peça será retirada.
 
             //se eu capturar alguma peça eu armazeno esta peça na minha coleção de Peças capturadas.
 
@@ -59,13 +64,53 @@ namespace Jogo_Xadrez.play
             {
                 PecasCapturadas.Add(pecaCapturada);
             }
+
+            return pecaCapturada;
         }
 
+
+        // Esse método desfaz a ultima jogada quando o jogador atual em seu ultimo movimento pode se colocar em Xeque.
+        public void UndoMove(Position origem, Position destino, ChessPieces pecaCapturada)
+        {
+
+
+            ChessPieces p = Tab.RemovePiece(destino);
+
+            p.DecrementarMovimentos();
+
+           
+            // Se foi capturada alguma peça eu insiro ela novamente na posição de destino e removo ela da minha coleção de peças Capturadas.
+            if(pecaCapturada != null)
+            {
+                Tab.InsertPiece(pecaCapturada, destino);
+
+                PecasCapturadas.Remove(pecaCapturada);
+            }
+
+            Tab.InsertPiece(p, origem);
+
+        }
         public void ExecutarJogada(Position origem, Position destino)
         {
-            ExecutarMovimento(origem, destino);
+            ChessPieces pecaCapturada = ExecutarMovimento(origem, destino);
+
+            if (InXeque(JogadorAtual))
+            {
+
+                UndoMove(origem, destino, pecaCapturada);
+
+                throw new BoardException("Você não pode se colocar em Xeque!");
+            }
+
+            if (InXeque(adversary(JogadorAtual)))
+            {
+                Xeque = true;
+            }
+
             Play++;
+
             TrocaVez();
+
         }
 
         public void ValidarPosicaoOrigem(Position pos)
@@ -151,6 +196,53 @@ namespace Jogo_Xadrez.play
             return aux;
         }
 
+        //identifica a cor adversária para que eu possa criar uma matriz de movimentos possíveis e a partir desta matriz eu consigo retirar a informação para a lógica de Xeque.
+        private Color adversary(Color cor)
+        {
+            if(cor == Color.Branca)
+            {
+                return Color.Preta;
+            }
+            else
+            {
+                return Color.Branca;
+            }
+        }
+
+        //vai passar por minha coleção de peças em jogo e buscar o Rei de uma determinada cor.
+        private ChessPieces Rei(Color cor)
+        {
+            foreach(ChessPieces x in PartsInPlay(cor))
+            {
+                if (x is Rei)
+                {
+                    return x;
+                }
+            }
+            return null;
+        }
+
+        // Este método percorre uma matriz de possíveis movimentos das peças na cor adversária e verifica se o meu rei pode ser atingido. 
+        public bool InXeque(Color cor)
+        {
+            ChessPieces R = Rei(cor);
+            if(R == null)
+            {
+                throw new BoardException($"Não existe Rei da cor {cor} no tabuleiro");
+            }
+            foreach(ChessPieces x in PartsInPlay(adversary(cor)))
+            {
+                bool[,] mat = x.MovimentosPossiveis();
+
+                if (mat[R.Position.Linha, R.Position.Coluna])
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         //Dada uma coluna e linha de xadrez eu vou no tabuleiro da partida, coloco a peça e adiciono esta peça na minha coleção de peças. Quer dizer que esta peça faz parte da minha partida.
         public void InsertNewPiece(char coluna, int linha, ChessPieces peca)
         {
@@ -177,7 +269,7 @@ namespace Jogo_Xadrez.play
             InsertNewPiece('c', 7, new Torre(Tab, Color.Preta));
             InsertNewPiece('c', 8, new Torre(Tab, Color.Preta));
             InsertNewPiece('d', 7, new Torre(Tab, Color.Preta));
-            InsertNewPiece('d', 8, new Torre(Tab, Color.Preta));
+            InsertNewPiece('d', 8, new Rei(Tab, Color.Preta));
             InsertNewPiece('e', 7, new Torre(Tab, Color.Preta));
             InsertNewPiece('e', 8, new Torre(Tab, Color.Preta));
 
