@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using Jogo_Xadrez.board;
 
 
@@ -9,18 +9,34 @@ namespace Jogo_Xadrez.play
         //mecânica do jogo 
 
         public Board Tab { get; private set; }
+
         public int Play { get; private set; }
+
         public Color JogadorAtual { get; private set; }
+
         public bool TheEnd { get; private set; }
+
+        private HashSet<ChessPieces> Pecas;
+
+        private HashSet<ChessPieces> PecasCapturadas;
 
 
         public Match()
         {
             Tab = new Board(8,8);
+
             Play = 1;
+
             JogadorAtual = Color.Branca; // QUEM INICIA JOGANDO É SEMPRE QUEM ESTÁ COM AS PEÇAS BRANCAS.
-            InsertPieces();
+
             TheEnd = false;
+
+            Pecas = new HashSet<ChessPieces>();
+
+            PecasCapturadas = new HashSet<ChessPieces>();
+
+            InsertPieces();
+
         }
 
         
@@ -29,13 +45,20 @@ namespace Jogo_Xadrez.play
         {
             ChessPieces p = Tab.RemovePiece(origem);
 
-            p.IncrementarMovimentos();
+            //p.IncrementarMovimentos();
+
+            ChessPieces pecaCapturada = Tab.RemovePiece(destino);
+
+            Tab.InsertPiece(p, destino);
 
             Tab.RemovePiece(destino);// se tiver alguma peça será retirada.
 
-            ChessPieces pecaCapturada = Tab.RemovePiece(destino); 
+            //se eu capturar alguma peça eu armazeno esta peça na minha coleção de Peças capturadas.
 
-            Tab.InsertPiece(p, destino);
+            if (pecaCapturada != null)
+            {
+                PecasCapturadas.Add(pecaCapturada);
+            }
         }
 
         public void ExecutarJogada(Position origem, Position destino)
@@ -94,22 +117,71 @@ namespace Jogo_Xadrez.play
                 JogadorAtual = Color.Branca;
             }
         }
-        private void InsertPieces()
+
+
+        //Retorna todas as peças capturadas somente na cor informada.
+        public HashSet<ChessPieces> CapturedPieces(Color cor)
+        {
+            HashSet<ChessPieces> aux = new HashSet<ChessPieces>();
+
+            foreach(ChessPieces x in PecasCapturadas)
+            {
+                if (x.Cor == cor)
+                {
+                    aux.Add(x);
+                }
+            }
+            return aux;
+        }
+
+
+        public HashSet<ChessPieces> PartsInPlay(Color cor)
+        {
+            HashSet<ChessPieces> aux = new HashSet<ChessPieces>();
+            foreach (ChessPieces x in Pecas)
+            {
+                if (x.Cor == cor)
+                {
+                    aux.Add(x);
+                }
+            }
+            //retira todas as peças capturadas desta mesma cor, exceto aquelas que já foram capturadas. Desta forma eu tenho o valor das peças que ainda estão no jogo.
+            aux.ExceptWith(CapturedPieces(cor));
+
+            return aux;
+        }
+
+        //Dada uma coluna e linha de xadrez eu vou no tabuleiro da partida, coloco a peça e adiciono esta peça na minha coleção de peças. Quer dizer que esta peça faz parte da minha partida.
+        public void InsertNewPiece(char coluna, int linha, ChessPieces peca)
         {
 
-            Tab.InsertPiece(new Torre(Tab, Color.Preta), new ChessPosition('c', 7).ToPosition());
-            Tab.InsertPiece(new Torre(Tab, Color.Preta), new ChessPosition('c', 8).ToPosition());
-            Tab.InsertPiece(new Torre(Tab, Color.Preta), new ChessPosition('d', 7).ToPosition());
-            Tab.InsertPiece(new Torre(Tab, Color.Preta), new ChessPosition('d', 8).ToPosition());
-            Tab.InsertPiece(new Torre(Tab, Color.Preta), new ChessPosition('e', 7).ToPosition());
-            Tab.InsertPiece(new Torre(Tab, Color.Preta), new ChessPosition('e', 8).ToPosition());
+            Tab.InsertPiece(peca, new ChessPosition(coluna, linha).ToPosition());
 
-            Tab.InsertPiece(new Torre(Tab, Color.Branca), new ChessPosition('c', 1).ToPosition());
-            Tab.InsertPiece(new Torre(Tab, Color.Branca), new ChessPosition('c', 2).ToPosition());
-            Tab.InsertPiece(new Rei(Tab, Color.Branca), new ChessPosition('d', 1).ToPosition());
-            Tab.InsertPiece(new Torre(Tab, Color.Branca), new ChessPosition('d', 2).ToPosition());
-            Tab.InsertPiece(new Torre(Tab, Color.Branca), new ChessPosition('e', 1).ToPosition());
-            Tab.InsertPiece(new Torre(Tab, Color.Branca), new ChessPosition('e', 2).ToPosition());
+            Pecas.Add(peca);
+
+        }
+
+
+        //cria a peça e armazena na coleção.
+        private void InsertPieces()
+        {
+            InsertNewPiece('c', 1, new Torre(Tab, Color.Branca));
+            InsertNewPiece('c', 2, new Torre(Tab, Color.Branca));
+            InsertNewPiece('d', 1, new Rei(Tab, Color.Branca));
+            InsertNewPiece('d', 2, new Torre(Tab, Color.Branca));
+            InsertNewPiece('e', 1, new Torre(Tab, Color.Branca));
+            InsertNewPiece('e', 2, new Torre(Tab, Color.Branca));
+
+
+
+            InsertNewPiece('c', 7, new Torre(Tab, Color.Preta));
+            InsertNewPiece('c', 8, new Torre(Tab, Color.Preta));
+            InsertNewPiece('d', 7, new Torre(Tab, Color.Preta));
+            InsertNewPiece('d', 8, new Torre(Tab, Color.Preta));
+            InsertNewPiece('e', 7, new Torre(Tab, Color.Preta));
+            InsertNewPiece('e', 8, new Torre(Tab, Color.Preta));
+
+  
 
         }
     }

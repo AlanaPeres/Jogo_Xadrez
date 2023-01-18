@@ -11,6 +11,7 @@ namespace Jogo_Xadrez.board
 
         public int Linhas { get; set; }
         public int Colunas { get; set; }
+
         private ChessPieces[,] Matriz;
 
 
@@ -18,8 +19,11 @@ namespace Jogo_Xadrez.board
         public Board(int linhas, int colunas) 
         {
             Linhas= linhas;
+
             Colunas= colunas;
+
             Matriz = new ChessPieces[Linhas, Colunas];
+
         }
 
         public ChessPieces Peca(int linha, int coluna)
@@ -32,7 +36,11 @@ namespace Jogo_Xadrez.board
             return Matriz[pos.Linha, pos.Coluna];
         }
 
-        
+        public bool existePeca(Position pos)
+        {
+            ValidatePosition(pos);
+            return Peca(pos) != null;
+        }
         public void InsertPiece(ChessPieces p, Position pos)
         {
             if (ThereIsChessPiece(pos))

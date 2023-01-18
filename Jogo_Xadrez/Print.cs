@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Jogo_Xadrez.board;
 using Jogo_Xadrez.play;
 namespace Jogo_Xadrez
@@ -57,6 +58,9 @@ namespace Jogo_Xadrez
             Console.BackgroundColor = fundo;
 
         }
+
+
+
         // Lê o que o usuário digitar (letra e numero)
         public static ChessPosition ReadPosition()
         {
@@ -69,6 +73,8 @@ namespace Jogo_Xadrez
             return new ChessPosition(coluna, linha); 
 
         }
+
+
 
         public static void PrintPieces(ChessPieces peca)
         {
@@ -99,6 +105,65 @@ namespace Jogo_Xadrez
             }
 
         }
-    
+
+
+
+
+        public static void PrintMatch(Match partida)
+        {
+            Print.PrintBoard(partida.Tab);
+
+            Console.WriteLine();
+
+            PrintCapturedPieces(partida);
+
+            Console.WriteLine("\n\nAgora é a vez do jogador " + partida.Play);
+
+            Console.WriteLine("Aguardando a jogada: " + partida.JogadorAtual);
+        }
+
+
+
+
+
+        public static void PrintCapturedPieces(Match partida)
+        {
+            
+            Console.WriteLine("Peças capturadas no jogo: ");
+
+            Console.Write("Brancas: ");
+
+            PrintCollection(partida.CapturedPieces(Color.Branca));
+
+            Console.WriteLine();
+
+            Console.Write("Pretas: ");
+
+            ConsoleColor aux = Console.ForegroundColor;
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+
+            PrintCollection(partida.CapturedPieces(Color.Preta));
+
+            Console.ForegroundColor = aux;
+
+            Console.WriteLine();
+
+
+           
+        }
+
+        public static void PrintCollection(HashSet<ChessPieces> Collection)
+        {
+            Console.Write("[");
+
+            foreach(ChessPieces x in Collection)
+            {
+                Console.Write(x + " ");
+            }
+
+            Console.Write("]");
+
+        }
     }
 }

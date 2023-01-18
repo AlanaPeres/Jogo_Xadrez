@@ -23,13 +23,16 @@ namespace Jogo_Xadrez
                     {
                         Console.Clear();
 
-                        Print.PrintBoard(partida.Tab);
 
-                        Console.WriteLine();
+                        Print.PrintMatch(partida);
 
-                        Console.WriteLine("Agora é a vez do jogador " + partida.Play);
+                        //Print.PrintBoard(partida.Tab);
 
-                        Console.WriteLine("Aguardando a jogada: " + partida.JogadorAtual);
+                        //Console.WriteLine();
+
+                        //Console.WriteLine("Agora é a vez do jogador " + partida.Play);
+
+                        //Console.WriteLine("Aguardando a jogada: " + partida.JogadorAtual);
 
                         Console.WriteLine();
 
@@ -54,7 +57,7 @@ namespace Jogo_Xadrez
 
                         partida.ValidarPosicaoDestino(origem, destino);
 
-                        partida.ExecutarMovimento(origem, destino);
+                        //partida.ExecutarMovimento(origem, destino);
 
                         partida.ExecutarJogada(origem, destino);
                     }
