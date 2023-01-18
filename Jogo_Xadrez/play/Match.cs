@@ -11,6 +11,7 @@ namespace Jogo_Xadrez.play
         public Board Tab { get; private set; }
         private int Play;
         private Color JogadorAtual;
+        public bool TheEnd { get; private set; }
 
 
         public Match()
@@ -19,6 +20,7 @@ namespace Jogo_Xadrez.play
             Play = 1;
             JogadorAtual = Color.Branca; // QUEM INICIA JOGANDO É SEMPRE QUEM ESTÁ COM AS PEÇAS BRANCAS.
             InsertPieces();
+            TheEnd = false;
         }
 
         
@@ -48,7 +50,7 @@ namespace Jogo_Xadrez.play
 
             Tab.InsertPiece(new Torre(Tab, Color.Branca), new ChessPosition('c', 1).ToPosition());
             Tab.InsertPiece(new Torre(Tab, Color.Branca), new ChessPosition('c', 2).ToPosition());
-            Tab.InsertPiece(new Torre(Tab, Color.Branca), new ChessPosition('d', 1).ToPosition());
+            Tab.InsertPiece(new Rei(Tab, Color.Branca), new ChessPosition('d', 1).ToPosition());
             Tab.InsertPiece(new Torre(Tab, Color.Branca), new ChessPosition('d', 2).ToPosition());
             Tab.InsertPiece(new Torre(Tab, Color.Branca), new ChessPosition('e', 1).ToPosition());
             Tab.InsertPiece(new Torre(Tab, Color.Branca), new ChessPosition('e', 2).ToPosition());

@@ -1,5 +1,6 @@
 ﻿using System;
 using Jogo_Xadrez.board;
+using Jogo_Xadrez.play;
 namespace Jogo_Xadrez
 {
     internal class Print
@@ -27,6 +28,18 @@ namespace Jogo_Xadrez
                 Console.WriteLine();
             }
             Console.WriteLine("  A B C D E F G H ");
+        }
+        // Lê o que o usuário digitar (letra e numero)
+        public static ChessPosition ReadPosition()
+        {
+            string s = Console.ReadLine();
+
+            char coluna = s[0];
+
+            int linha = int.Parse(s[1] + "");// "" força a converter para string
+
+            return new ChessPosition(coluna, linha); 
+
         }
 
         public static void PrintPieces(ChessPieces peca)

@@ -15,7 +15,29 @@ namespace Jogo_Xadrez
             try
             {
                 Match partida = new Match();
-                Print.PrintBoard(partida.Tab);
+
+
+                while (!partida.TheEnd)
+                {
+                    Console.Clear();
+
+                    Print.PrintBoard(partida.Tab);
+
+                    Console.WriteLine();
+
+                    Console.Write("Digite a posição de origem: ");
+                    // a posição de origem recebe o método ler posição do teclado e  retorna uma posição da Matriz.
+                    Position origem = Print.ReadPosition().ToPosition();
+
+                    Console.Write("Digite a posição de Destino: ");
+
+                    Position destino = Print.ReadPosition().ToPosition();
+
+                    partida.ExecutarMovimento(origem, destino);
+                }
+
+               
+
             }
             catch (BoardException e)
             {
