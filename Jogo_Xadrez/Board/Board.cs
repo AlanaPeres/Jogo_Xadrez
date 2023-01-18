@@ -61,7 +61,7 @@ namespace Jogo_Xadrez.board
 
             return aux;
         }
-
+        //Verifica se a posição recebida é válida.
         public bool ReadPosition(Position pos)
         {
             if(pos.Linha < 0 || pos.Linha >= Linhas || pos.Coluna < 0 || pos.Coluna>= Colunas)

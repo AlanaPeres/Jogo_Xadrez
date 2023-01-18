@@ -27,7 +27,16 @@ namespace Jogo_Xadrez
 
                     Console.Write("Digite a posição de origem: ");
                     // a posição de origem recebe o método ler posição do teclado e  retorna uma posição da Matriz.
+
                     Position origem = Print.ReadPosition().ToPosition();
+
+                    //a partir da posição de origem eu pego todos os movimentos possívei e guardo dentro desta matriz.
+                    bool[,] posicoesPossiveis = partida.Tab.Peca(origem).MovimentosPossiveis();
+
+                    Console.Clear();
+
+                    Print.PrintBoard(partida.Tab, posicoesPossiveis);
+
 
                     Console.Write("Digite a posição de Destino: ");
 

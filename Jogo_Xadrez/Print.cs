@@ -14,20 +14,48 @@ namespace Jogo_Xadrez
 
                 for(int j = 0; j < Tab.Colunas; j++) 
                 {
-                    if(Tab.Peca(i,j) == null) // se não houver nenhuma peça na minha matriz eu imprimo um traço.
-                    {
-                        Console.Write("- ");
-                    }
-                    else // senão eu imprimo a peça 
-                    {
+                    
+                    
                         Print.PrintPieces(Tab.Peca(i, j));
-                        Console.Write(" ");
-                    }
+                       
+                    
 
                 }
                 Console.WriteLine();
             }
             Console.WriteLine("  A B C D E F G H ");
+        }
+
+        public static void PrintBoard(Board Tab, bool[,] posicoesPossiveis)
+        {
+            ConsoleColor fundo = Console.BackgroundColor;
+            ConsoleColor corDeFundoAlterada = ConsoleColor.DarkGreen;
+            for (int i = 0; i < Tab.Linhas; i++)
+            {
+                Console.Write(8 - i + " "); // para imprimir o número das linhas.
+
+                for (int j = 0; j < Tab.Colunas; j++)
+                {
+
+                    if (posicoesPossiveis[i,j] == true) // se a posição estiver marcada como uma posição possível de movimento o fundo é alterado.
+                    {
+                        Console.BackgroundColor = corDeFundoAlterada;
+                    }else
+                    {
+                        Console.BackgroundColor = fundo;
+                    }
+
+                    Print.PrintPieces(Tab.Peca(i, j));
+                    Console.BackgroundColor = fundo;
+
+                }
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("  A B C D E F G H ");
+
+            Console.BackgroundColor = fundo;
+
         }
         // Lê o que o usuário digitar (letra e numero)
         public static ChessPosition ReadPosition()
@@ -43,22 +71,33 @@ namespace Jogo_Xadrez
         }
 
         public static void PrintPieces(ChessPieces peca)
-        {   // se a peça for branca, simplesmente imprime  a peça.
-            if (peca.Cor == Color.Branca)
+        {
+
+            if (peca == null)
             {
-                Console.Write(peca);
+                Console.Write("- ");
             }
             else
-            {   //se não for branca, imprime Cyan.
-                ConsoleColor aux = Console.ForegroundColor;
+            {
 
-                Console.ForegroundColor = ConsoleColor.Cyan;
+                if (peca.Cor == Color.Branca)
+                {
+                    Console.Write(peca);
+                }
+                else
+                {   //se não for branca, imprime Cyan.
+                    ConsoleColor aux = Console.ForegroundColor;
 
-                Console.Write(peca);
+                    Console.ForegroundColor = ConsoleColor.Cyan;
 
-                Console.ForegroundColor = aux;
+                    Console.Write(peca);
 
+                    Console.ForegroundColor = aux;
+
+                }
+                Console.Write(" ");
             }
+
         }
     
     }
