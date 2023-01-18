@@ -9,8 +9,8 @@ namespace Jogo_Xadrez.play
         //mecânica do jogo 
 
         public Board Tab { get; private set; }
-        private int Play;
-        private Color JogadorAtual;
+        public int Play { get; private set; }
+        public Color JogadorAtual { get; private set; }
         public bool TheEnd { get; private set; }
 
 
@@ -38,6 +38,62 @@ namespace Jogo_Xadrez.play
             Tab.InsertPiece(p, destino);
         }
 
+        public void ExecutarJogada(Position origem, Position destino)
+        {
+            ExecutarMovimento(origem, destino);
+            Play++;
+            TrocaVez();
+        }
+
+        public void ValidarPosicaoOrigem(Position pos)
+        {  
+            
+            //valida se a posição escolhida pelo usuário possui alguma peça para movimentar.
+            if(Tab.Peca(pos) == null)
+            {
+                throw new BoardException("Não existe peça na posição escolhida");
+            }
+
+
+
+            //valida se a peça de origem possui a mesma cor do jogador atual.
+            if(JogadorAtual != Tab.Peca(pos).Cor)
+            {
+                throw new BoardException("A peça de origem escolhida não pertence ao jogador atual.");
+            }
+
+
+            //valida se existe movimentos disponíveis.
+            if (!Tab.Peca(pos).ExisteMovimentosPossiveis())
+            {
+                throw new BoardException("Não há movimentos possíveis para a peça de origem escolhida");
+            }
+        }
+
+
+        public void ValidarPosicaoDestino(Position origem, Position destino)
+        {
+            if (!Tab.Peca(origem).PodeMover(destino))
+            {
+
+                throw new BoardException("Posição de destino inválida");
+
+            }
+
+
+        }
+
+        private void TrocaVez()
+        {
+            if(JogadorAtual == Color.Branca)
+            {
+                JogadorAtual = Color.Preta;
+            }
+            else
+            {
+                JogadorAtual = Color.Branca;
+            }
+        }
         private void InsertPieces()
         {
 

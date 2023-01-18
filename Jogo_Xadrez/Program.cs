@@ -19,30 +19,53 @@ namespace Jogo_Xadrez
 
                 while (!partida.TheEnd)
                 {
-                    Console.Clear();
+                    try
+                    {
+                        Console.Clear();
 
-                    Print.PrintBoard(partida.Tab);
+                        Print.PrintBoard(partida.Tab);
 
-                    Console.WriteLine();
+                        Console.WriteLine();
 
-                    Console.Write("Digite a posição de origem: ");
-                    // a posição de origem recebe o método ler posição do teclado e  retorna uma posição da Matriz.
+                        Console.WriteLine("Agora é a vez do jogador " + partida.Play);
 
-                    Position origem = Print.ReadPosition().ToPosition();
+                        Console.WriteLine("Aguardando a jogada: " + partida.JogadorAtual);
 
-                    //a partir da posição de origem eu pego todos os movimentos possívei e guardo dentro desta matriz.
-                    bool[,] posicoesPossiveis = partida.Tab.Peca(origem).MovimentosPossiveis();
+                        Console.WriteLine();
 
-                    Console.Clear();
+                        Console.Write("Digite a posição de origem: ");
+                        // a posição de origem recebe o método ler posição do teclado e  retorna uma posição da Matriz.
 
-                    Print.PrintBoard(partida.Tab, posicoesPossiveis);
+                        Position origem = Print.ReadPosition().ToPosition();
+
+                        partida.ValidarPosicaoOrigem(origem);
+
+                        //a partir da posição de origem eu pego todos os movimentos possívei e guardo dentro desta matriz.
+                        bool[,] posicoesPossiveis = partida.Tab.Peca(origem).MovimentosPossiveis();
+
+                        Console.Clear();
+
+                        Print.PrintBoard(partida.Tab, posicoesPossiveis);
 
 
-                    Console.Write("Digite a posição de Destino: ");
+                        Console.Write("Digite a posição de Destino: ");
 
-                    Position destino = Print.ReadPosition().ToPosition();
+                        Position destino = Print.ReadPosition().ToPosition();
 
-                    partida.ExecutarMovimento(origem, destino);
+                        partida.ValidarPosicaoDestino(origem, destino);
+
+                        partida.ExecutarMovimento(origem, destino);
+
+                        partida.ExecutarJogada(origem, destino);
+                    }
+                    catch(BoardException e)
+                    {
+                        Console.WriteLine(e.Message);
+
+                        Console.ReadLine();
+
+                    }
+                    
                 }
 
                
