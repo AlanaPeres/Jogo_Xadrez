@@ -60,6 +60,8 @@ namespace Jogo_Xadrez
                         //partida.ExecutarMovimento(origem, destino);
 
                         partida.ExecutarJogada(origem, destino);
+
+
                     }
                     catch(BoardException e)
                     {
@@ -70,7 +72,8 @@ namespace Jogo_Xadrez
                     }
                     
                 }
-
+                Console.Clear();
+                Print.PrintMatch(partida);
                
 
             }

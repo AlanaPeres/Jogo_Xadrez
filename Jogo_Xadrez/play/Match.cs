@@ -106,10 +106,16 @@ namespace Jogo_Xadrez.play
             {
                 Xeque = true;
             }
+            if (TestXequeMate(adversary(JogadorAtual))){
+                TheEnd = true;
+            }
+            else
+            {
+                Play++;
 
-            Play++;
+                TrocaVez();
 
-            TrocaVez();
+            }
 
         }
 
@@ -243,6 +249,51 @@ namespace Jogo_Xadrez.play
             return false;
         }
 
+        //Esse método vai passar na matriz de possíveis movimentos para verificar se é possível sair do Xeque.
+        public bool TestXequeMate(Color cor)
+        {
+            if (!InXeque(cor))
+            {
+                return false;
+            }
+            foreach(ChessPieces x in PartsInPlay(cor))
+            {
+                bool[,] mat = x.MovimentosPossiveis();
+
+                for(int i = 0; i < Tab.Linhas; i++)
+                {
+                    for(int j = 0; j < Tab.Colunas; j++)
+                    {
+
+                        // Se existir algum movimento possível eu vou movimentar a peça e verificar mais uma vez se o jogador saiu do Xeque. 
+                        if (mat[i, j])
+                        {
+                            Position origem = x.Position;
+
+                            Position destino = new Position(i, j);
+
+                            ChessPieces pecaCapturada = ExecutarMovimento(origem, destino);
+
+                            bool InXeque = TestXequeMate(cor);
+
+                            UndoMove(origem, destino, pecaCapturada);
+                            
+                            // caso o movimento tenha retirado o jogador de Xeque retornamos falso.
+                            if (!InXeque)
+                            {
+                                return false;
+                            }
+
+
+                        }
+
+                    }
+                }
+            }
+            // infelizmente é XequeMate.
+            return true;
+        }
+
         //Dada uma coluna e linha de xadrez eu vou no tabuleiro da partida, coloco a peça e adiciono esta peça na minha coleção de peças. Quer dizer que esta peça faz parte da minha partida.
         public void InsertNewPiece(char coluna, int linha, ChessPieces peca)
         {
@@ -257,23 +308,44 @@ namespace Jogo_Xadrez.play
         //cria a peça e armazena na coleção.
         private void InsertPieces()
         {
-            InsertNewPiece('c', 1, new Torre(Tab, Color.Branca));
-            InsertNewPiece('c', 2, new Torre(Tab, Color.Branca));
-            InsertNewPiece('d', 1, new Rei(Tab, Color.Branca));
-            InsertNewPiece('d', 2, new Torre(Tab, Color.Branca));
-            InsertNewPiece('e', 1, new Torre(Tab, Color.Branca));
-            InsertNewPiece('e', 2, new Torre(Tab, Color.Branca));
+            InsertNewPiece('a', 1, new Torre(Tab, Color.Branca));
+            InsertNewPiece('b', 1, new Cavalo(Tab, Color.Branca));
+            InsertNewPiece('c', 1, new Bispo(Tab, Color.Branca));
+            InsertNewPiece('d', 1, new Dama(Tab, Color.Branca));
+            InsertNewPiece('e', 1, new Rei(Tab, Color.Branca));
+            InsertNewPiece('f', 1, new Bispo(Tab, Color.Branca));
+            InsertNewPiece('g', 1, new Cavalo(Tab, Color.Branca));
+            InsertNewPiece('h', 1, new Torre(Tab, Color.Branca));
+            InsertNewPiece('a', 2, new Peao(Tab, Color.Branca));
+            InsertNewPiece('b', 2, new Peao(Tab, Color.Branca));
+            InsertNewPiece('c', 2, new Peao(Tab, Color.Branca));
+            InsertNewPiece('d', 2, new Peao(Tab, Color.Branca));
+            InsertNewPiece('e', 2, new Peao(Tab, Color.Branca));
+            InsertNewPiece('f', 2, new Peao(Tab, Color.Branca));
+            InsertNewPiece('g', 2, new Peao(Tab, Color.Branca));
+            InsertNewPiece('h', 2, new Peao(Tab, Color.Branca));
+
+
+            InsertNewPiece('a', 8, new Torre(Tab, Color.Preta));
+            InsertNewPiece('b', 8, new Cavalo(Tab, Color.Preta));
+            InsertNewPiece('c', 8, new Bispo(Tab, Color.Preta));
+            InsertNewPiece('d', 8, new Dama(Tab, Color.Preta));
+            InsertNewPiece('e', 8, new Rei(Tab, Color.Preta));
+            InsertNewPiece('f', 8, new Bispo(Tab, Color.Preta));
+            InsertNewPiece('g', 8, new Cavalo(Tab, Color.Preta));
+            InsertNewPiece('h', 8, new Torre(Tab, Color.Preta));
+            InsertNewPiece('a', 7, new Peao(Tab, Color.Preta));
+            InsertNewPiece('b', 7, new Peao(Tab, Color.Preta));
+            InsertNewPiece('c', 7, new Peao(Tab, Color.Preta));
+            InsertNewPiece('d', 7, new Peao(Tab, Color.Preta));
+            InsertNewPiece('e', 7, new Peao(Tab, Color.Preta));
+            InsertNewPiece('f', 7, new Peao(Tab, Color.Preta));
+            InsertNewPiece('g', 7, new Peao(Tab, Color.Preta));
+            InsertNewPiece('h', 7, new Peao(Tab, Color.Preta));
 
 
 
-            InsertNewPiece('c', 7, new Torre(Tab, Color.Preta));
-            InsertNewPiece('c', 8, new Torre(Tab, Color.Preta));
-            InsertNewPiece('d', 7, new Torre(Tab, Color.Preta));
-            InsertNewPiece('d', 8, new Rei(Tab, Color.Preta));
-            InsertNewPiece('e', 7, new Torre(Tab, Color.Preta));
-            InsertNewPiece('e', 8, new Torre(Tab, Color.Preta));
 
-  
 
         }
     }

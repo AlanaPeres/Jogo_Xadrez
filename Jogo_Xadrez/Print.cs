@@ -24,7 +24,11 @@ namespace Jogo_Xadrez
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine("  A B C D E F G H ");
+            
+
+            Console.WriteLine("  a b c d e f g h ");
+
+           
         }
 
         public static void PrintBoard(Board Tab, bool[,] posicoesPossiveis)
@@ -119,12 +123,27 @@ namespace Jogo_Xadrez
 
             Console.WriteLine("\n\nAgora é a vez do jogador " + partida.Play);
 
-            Console.WriteLine("Aguardando a jogada: " + partida.JogadorAtual);
-
-            if (partida.Xeque)
+            if (!partida.TheEnd)
             {
-                Console.WriteLine("XEQUE!");
+                Console.WriteLine("Aguardando a jogada: " + partida.JogadorAtual);
+
+                if (partida.Xeque)
+                {
+                    Console.WriteLine("XEQUE!");
+                }
+
+
             }
+            else
+            {
+
+                Console.WriteLine("XEQUEMATE!");
+
+                Console.WriteLine("Vencedor: " + partida.JogadorAtual);
+
+            }
+
+           
         }
 
 

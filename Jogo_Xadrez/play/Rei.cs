@@ -22,6 +22,9 @@ namespace Jogo_Xadrez.play
             ChessPieces p = Tab.Peca(pos);
             return p == null || p.Cor != this.Cor; // o método retorna se a posição está nula ou se possui alguma peça adversária, somente nessas hipóteses o rei pode se movimentar.
         }
+
+
+
         //uso o override para indicar que eu estou sobreescrevendo o método da super classe aqui.
         public override bool[,] MovimentosPossiveis()
         {
