@@ -16,10 +16,8 @@ namespace Jogo_Xadrez
                 for(int j = 0; j < Tab.Colunas; j++) 
                 {
                     
-                    
                         Print.PrintPieces(Tab.Peca(i, j));
                        
-                    
 
                 }
                 Console.WriteLine();
@@ -51,13 +49,14 @@ namespace Jogo_Xadrez
                     }
 
                     Print.PrintPieces(Tab.Peca(i, j));
+
                     Console.BackgroundColor = fundo;
 
                 }
                 Console.WriteLine();
             }
 
-            Console.WriteLine("  A B C D E F G H ");
+            Console.WriteLine("  a b c d e f g h ");
 
             Console.BackgroundColor = fundo;
 
@@ -121,7 +120,7 @@ namespace Jogo_Xadrez
 
             PrintCapturedPieces(partida);
 
-            Console.WriteLine("\n\nAgora é a vez do jogador " + partida.Play);
+            Console.WriteLine("\n\nJOGADA " + partida.Play);
 
             if (!partida.TheEnd)
             {
@@ -140,6 +139,8 @@ namespace Jogo_Xadrez
                 Console.WriteLine("XEQUEMATE!");
 
                 Console.WriteLine("Vencedor: " + partida.JogadorAtual);
+
+                
 
             }
 

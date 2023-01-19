@@ -9,6 +9,8 @@ namespace Jogo_Xadrez.board
         public int QuantidadeMovimentos { get; protected set; }
         public Board Tab { get; protected set; }
 
+
+
         public ChessPieces(Board tab, Color cor ) 
         {
             Position = null;
@@ -47,7 +49,7 @@ namespace Jogo_Xadrez.board
             return false;
         }
         //testa os movimentos possiveis na matriz e verifica se é true.
-        public bool PodeMover(Position pos)
+        public bool MovimentoPossivel(Position pos)
         {
             return MovimentosPossiveis()[pos.Linha, pos.Coluna];
         }

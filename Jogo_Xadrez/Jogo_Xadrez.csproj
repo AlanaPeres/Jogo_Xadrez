@@ -48,6 +48,8 @@
     <Compile Include="board\ChessPieces.cs" />
     <Compile Include="board\Color.cs" />
     <Compile Include="board\Position.cs" />
+    <Compile Include="conta\Contas.cs" />
+    <Compile Include="menu\Menus.cs" />
     <Compile Include="play\Bispo.cs" />
     <Compile Include="play\Cavalo.cs" />
     <Compile Include="play\ChessPosition.cs" />

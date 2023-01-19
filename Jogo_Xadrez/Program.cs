@@ -2,7 +2,10 @@
 using Jogo_Xadrez.board;
 using Jogo_Xadrez;
 using Jogo_Xadrez.play;
-using System.Security.Cryptography;
+using Jogo_Xadrez.menu;
+using Jogo_Xadrez.conta;
+using System.Collections.Generic;
+using System.Threading;
 
 namespace Jogo_Xadrez
 {
@@ -10,80 +13,74 @@ namespace Jogo_Xadrez
     {
         static void Main(string[] args)
         {
-            Board Tab = new Board(8, 8);
+            List<Contas> Jogadores = new List<Contas>();
 
-            try
+            int opt = 0;
+            
+
+            do
             {
-                Match partida = new Match();
-
-
-                while (!partida.TheEnd)
-                {
-                    try
-                    {
-                        Console.Clear();
-
-
-                        Print.PrintMatch(partida);
-
-                        //Print.PrintBoard(partida.Tab);
-
-                        //Console.WriteLine();
-
-                        //Console.WriteLine("Agora é a vez do jogador " + partida.Play);
-
-                        //Console.WriteLine("Aguardando a jogada: " + partida.JogadorAtual);
-
-                        Console.WriteLine();
-
-                        Console.Write("Digite a posição de origem: ");
-                        // a posição de origem recebe o método ler posição do teclado e  retorna uma posição da Matriz.
-
-                        Position origem = Print.ReadPosition().ToPosition();
-
-                        partida.ValidarPosicaoOrigem(origem);
-
-                        //a partir da posição de origem eu pego todos os movimentos possívei e guardo dentro desta matriz.
-                        bool[,] posicoesPossiveis = partida.Tab.Peca(origem).MovimentosPossiveis();
-
-                        Console.Clear();
-
-                        Print.PrintBoard(partida.Tab, posicoesPossiveis);
-
-
-                        Console.Write("Digite a posição de Destino: ");
-
-                        Position destino = Print.ReadPosition().ToPosition();
-
-                        partida.ValidarPosicaoDestino(origem, destino);
-
-                        //partida.ExecutarMovimento(origem, destino);
-
-                        partida.ExecutarJogada(origem, destino);
-
-
-                    }
-                    catch(BoardException e)
-                    {
-                        Console.WriteLine(e.Message);
-
-                        Console.ReadLine();
-
-                    }
-                    
-                }
                 Console.Clear();
-                Print.PrintMatch(partida);
-               
 
-            }
-            catch (BoardException e)
-            {
-                Console.WriteLine(e.Message);
-            }
+                Menus.ShowMenu();
+
+                bool converterEntrada = int.TryParse(Console.ReadLine(), out opt);
 
 
-            Console.ReadLine();
+                switch (opt)
+                {
+                    case 0:
+
+                        Console.WriteLine("O programa esta sendo encerrado. Volte sempre!! ");
+
+                        break;
+                    case 1:
+
+                        Contas.Register(Jogadores);
+                       
+
+                        break;
+
+                    case 2:
+
+                        Contas.Login(Jogadores);
+
+                        
+
+                        break;
+
+                        case 3:
+
+                        //mostrar ranking
+                        break;
+
+
+                    case 4:
+                        //excluir resetar jogador.
+                        break;
+
+                       default:
+
+                                 
+                                 Console.ForegroundColor = ConsoleColor.Red;
+
+                                 Console.WriteLine("Opção inválida, tente novamente.");
+
+                                 Console.ResetColor();
+
+                                 Thread.Sleep(3000);
+                        break;
+
+
+
+                }
+
+
+
+
+            } while (opt != 0);
+
+            
         }
     }
 }

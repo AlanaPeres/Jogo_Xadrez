@@ -30,9 +30,11 @@ namespace Jogo_Xadrez.play
 
             //acima
             pos.DefinirValores(Position.Linha - 1, Position.Coluna);
+
             while(Tab.ReadPosition(pos) && MovimentOk(pos))
             {
                 mat[pos.Linha, pos.Coluna] = true;
+
                 //se em alguma das casas eu encontrar uma peça adviversária eu forço a parada do while.
                 if(Tab.Peca(pos) != null && Tab.Peca(pos).Cor != this.Cor)
                 {

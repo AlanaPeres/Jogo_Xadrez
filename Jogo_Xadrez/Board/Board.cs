@@ -48,6 +48,7 @@ namespace Jogo_Xadrez.board
 
                 throw new BoardException("Já existe uma peça nessa posição");
             }
+
             Matriz[pos.Linha, pos.Coluna] = p;
 
             p.Position = pos;
@@ -89,6 +90,8 @@ namespace Jogo_Xadrez.board
                 throw new BoardException("Posição inválida");
             }
 
+            
+
         }
 
         //verifica se existe uma peça em determinada posição.
@@ -96,6 +99,7 @@ namespace Jogo_Xadrez.board
         public bool ThereIsChessPiece(Position pos)
         {
             ValidatePosition(pos);
+
             return Peca(pos) != null;
 
         }
