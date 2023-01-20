@@ -102,24 +102,31 @@ namespace Jogo_Xadrez.conta
 
             int buscarIndex = Jogadores.FindIndex(x => x.Nome == jogador1);
 
+
+
             int buscaIndex2 = Jogadores.FindIndex(x => x.Nome == jogador2);
 
-            if(buscarIndex == -1 && buscaIndex2 == -1)
+            if(buscarIndex != -1 && buscaIndex2 != -1)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Não foi possível inicar partida.");
-                Console.WriteLine("Usuário ou senha não encontrado. Volte e cadastre os jogadores.");
-                Console.ResetColor();
-                Thread.Sleep(3000);
-            }
-            else
-            {
-
                 Match.Jogador1 = jogador1;
 
                 Match.Jogador2 = jogador2;
 
                 Match.StartPlay(Jogadores);
+            }
+            else
+            {
+
+                Console.ForegroundColor = ConsoleColor.Red;
+
+                Console.WriteLine("Não foi possível inicar partida.");
+                Console.WriteLine("Usuário não encontrado. Volte e cadastre os jogadores.");
+
+                Console.ResetColor();
+
+                Thread.Sleep(3000);
+
+               
             }
            
 
