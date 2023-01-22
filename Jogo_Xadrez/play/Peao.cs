@@ -11,10 +11,8 @@ namespace Jogo_Xadrez.play
            Partida = partida;
         }
 
-        public override string ToString()
-        {
-            return "P";
-        }
+        public override string ToString() => "P";
+        
 
        private bool  ExisteInimigo(Position pos)
         {
@@ -26,10 +24,8 @@ namespace Jogo_Xadrez.play
         }
 
 
-        private bool Livre(Position pos)
-        {
-            return Tab.Peca(pos) == null;
-        }
+        private bool Livre(Position pos) => Tab.Peca(pos) == null;
+       
 
         public override bool[,] MovimentosPossiveis()
         {
@@ -46,8 +42,8 @@ namespace Jogo_Xadrez.play
                 }
 
                 pos.DefinirValores(Position.Linha - 2, Position.Coluna);
-                Position p2 = new Position(pos.Linha - 1, pos.Coluna);   
-                if(Tab.ReadPosition(p2) && Livre(p2) && Tab.ReadPosition(pos) && QuantidadeMovimentos == 0)
+                Position p2 = new Position(Position.Linha - 1, Position.Coluna);   
+                if(Tab.ReadPosition(p2) && Livre(p2) && Tab.ReadPosition(pos) && Livre(pos) && QuantidadeMovimentos == 0)
                 {
                     mat[pos.Linha, pos.Coluna] = true;
                 }
@@ -79,8 +75,8 @@ namespace Jogo_Xadrez.play
                 }
 
                 pos.DefinirValores(Position.Linha + 2, Position.Coluna);
-                Position p2 = new Position(pos.Linha + 1, pos.Coluna);
-                if (Tab.ReadPosition(p2) && Livre(p2) && Tab.ReadPosition(pos) && QuantidadeMovimentos == 0)
+                Position p2 = new Position(Position.Linha + 1, Position.Coluna);
+                if (Tab.ReadPosition(p2) && Livre(p2) && Tab.ReadPosition(pos) && Livre(pos) && QuantidadeMovimentos == 0)
                 {
                     mat[pos.Linha, pos.Coluna] = true;
                 }

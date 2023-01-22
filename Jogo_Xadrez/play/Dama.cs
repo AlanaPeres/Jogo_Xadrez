@@ -11,10 +11,8 @@ namespace Jogo_Xadrez.play
             Partida = partida;
         }
 
-        public override string ToString()
-        {
-            return "D";
-        }
+        public override string ToString() => "D";
+        
 
         private bool MovimentoOk(Position pos)
         {
@@ -41,7 +39,7 @@ namespace Jogo_Xadrez.play
                     break;
                 }
                 //caso eu não encontre outra peça adversária eu continuo verificando acima.
-                pos.DefinirValores(Position.Linha - 1, Position.Coluna);
+                pos.DefinirValores(pos.Linha - 1, pos.Coluna);
 
 
             }
@@ -58,7 +56,7 @@ namespace Jogo_Xadrez.play
                     break;
                 }
                 //caso eu não encontre outra peça adversária eu continuo verificando abaixo.
-                pos.DefinirValores(Position.Linha + 1, Position.Coluna);
+                pos.DefinirValores(pos.Linha + 1, pos.Coluna);
             }
 
 
@@ -73,7 +71,7 @@ namespace Jogo_Xadrez.play
                     break;
                 }
                 //caso eu não encontre outra peça adversária eu continuo verificando a direita
-                pos.DefinirValores(Position.Linha, Position.Coluna + 1);
+                pos.DefinirValores(pos.Linha, pos.Coluna + 1);
             }
 
 
@@ -88,7 +86,7 @@ namespace Jogo_Xadrez.play
                     break;
                 }
 
-                pos.DefinirValores(Position.Linha, Position.Coluna - 1);
+                pos.DefinirValores(pos.Linha, pos.Coluna - 1);
                 //caso eu não encontre outra peça adversária eu continuo verificando a esquerda
 
             }
@@ -104,7 +102,7 @@ namespace Jogo_Xadrez.play
 
                 }
 
-                pos.DefinirValores(Position.Linha - 1, Position.Coluna - 1);
+                pos.DefinirValores(pos.Linha - 1, pos.Coluna - 1);
 
             }
 

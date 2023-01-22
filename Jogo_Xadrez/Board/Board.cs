@@ -31,10 +31,8 @@ namespace Jogo_Xadrez.board
             return Matriz[linha, coluna];
         }
 
-        public ChessPieces Peca(Position pos)
-        {
-            return Matriz[pos.Linha, pos.Coluna];
-        }
+        public ChessPieces Peca(Position pos) => Matriz[pos.Linha, pos.Coluna];
+        
 
         public bool ThereIsChessPiece(Position pos)
         {

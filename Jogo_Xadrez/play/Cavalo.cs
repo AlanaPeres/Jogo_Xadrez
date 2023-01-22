@@ -12,10 +12,8 @@ namespace Jogo_Xadrez.play
             Partida = partida;
         }
 
-        public override string ToString()
-        {
-            return "C";
-        }
+        public override string ToString() => "C";
+       
 
         private bool MovimentoOk(Position pos)
         {

@@ -12,11 +12,8 @@ namespace Jogo_Xadrez.play
             Partida = partida;
         }
 
-        public override string ToString()
-        {
-            return "R";
-        }
-
+        public override string ToString() => "R";
+       
 
         private bool MovimentOk(Position pos)
         {

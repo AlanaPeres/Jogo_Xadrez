@@ -24,9 +24,7 @@ namespace Jogo_Xadrez.play
         {
             return new Position(8 - Linha, Coluna - 'a'); 
         }
-        public override string ToString()
-        {
-            return "" + Coluna + Linha;
-        }
+        public override string ToString() => "" + Coluna + Linha;
+        
     }
 }
