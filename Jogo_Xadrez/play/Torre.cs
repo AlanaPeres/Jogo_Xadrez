@@ -6,9 +6,10 @@ namespace Jogo_Xadrez.play
 {
     class Torre : ChessPieces
     {
-        public Torre(Board tab, Color cor) : base(tab, cor)
+        private Match Partida;
+        public Torre(Board tab, Color cor, Match partida) : base(tab, cor)
         {
-
+            Partida = partida;
         }
 
         public override string ToString()

@@ -5,9 +5,10 @@ namespace Jogo_Xadrez.play
 {
     class Bispo : ChessPieces
     {
-        public Bispo(Board tab, Color cor) : base(tab, cor)
+        private Match Partida;
+        public Bispo(Board tab, Color cor, Match partida) : base(tab, cor)
         {
-
+            Partida = partida;
         }
 
         public override string ToString()
@@ -31,12 +32,11 @@ namespace Jogo_Xadrez.play
 
             //Bispo se move nas diagonais 
 
-            //noroeste
             pos.DefinirValores(Position.Linha - 1, Position.Coluna - 1);
             while(Tab.ReadPosition(pos) && MovimentoOk(pos)) 
             {
                 mat[pos.Linha, pos.Coluna] = true;
-                if(Tab.Peca(pos) != null && Tab.Peca(pos).Cor != this.Cor )
+                if(Tab.Peca(pos) != null && Tab.Peca(pos).Cor != Cor )
                 {
                     break;
 
@@ -46,7 +46,7 @@ namespace Jogo_Xadrez.play
 
             }
 
-            //nordeste
+            
             pos.DefinirValores(Position.Linha - 1, Position.Coluna + 1);
             while (Tab.ReadPosition(pos) && MovimentoOk(pos))
             {
@@ -61,7 +61,6 @@ namespace Jogo_Xadrez.play
 
             }
 
-            //sudeste
             pos.DefinirValores(Position.Linha + 1, Position.Coluna + 1);
             while (Tab.ReadPosition(pos) && MovimentoOk(pos))
             {
@@ -76,7 +75,7 @@ namespace Jogo_Xadrez.play
 
             }
 
-            //sudoeste
+            
             pos.DefinirValores(Position.Linha + 1, Position.Coluna - 1);
             while (Tab.ReadPosition(pos) && MovimentoOk(pos))
             {

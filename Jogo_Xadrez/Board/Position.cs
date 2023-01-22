@@ -1,5 +1,4 @@
 ﻿
-
 namespace Jogo_Xadrez.board
 {
     internal class Position

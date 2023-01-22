@@ -5,9 +5,10 @@ namespace Jogo_Xadrez.play
 {
     class Dama : ChessPieces
     {
-        public Dama(Board Tab, Color cor) : base(Tab, cor)
+        private Match Partida;
+        public Dama(Board Tab, Color cor, Match partida) : base(Tab, cor)
         {
-
+            Partida = partida;
         }
 
         public override string ToString()
@@ -29,13 +30,13 @@ namespace Jogo_Xadrez.play
 
             Position pos = new Position(0, 0);
 
-
+            //acima
             pos.DefinirValores(Position.Linha - 1, Position.Coluna);
             while (Tab.ReadPosition(pos) && MovimentoOk(pos))
             {
                 mat[pos.Linha, pos.Coluna] = true;
                 //se em alguma das casas eu encontrar uma peça adviversária eu forço a parada do while.
-                if (Tab.Peca(pos) != null && Tab.Peca(pos).Cor != this.Cor)
+                if (Tab.Peca(pos) != null && Tab.Peca(pos).Cor != Cor)
                 {
                     break;
                 }
@@ -52,7 +53,7 @@ namespace Jogo_Xadrez.play
             {
                 mat[pos.Linha, pos.Coluna] = true;
                 //se em alguma das casas eu encontrar uma peça adviversária eu forço a parada do while.
-                if (Tab.Peca(pos) != null && Tab.Peca(pos).Cor != this.Cor)
+                if (Tab.Peca(pos) != null && Tab.Peca(pos).Cor != Cor)
                 {
                     break;
                 }
@@ -67,7 +68,7 @@ namespace Jogo_Xadrez.play
             {
                 mat[pos.Linha, pos.Coluna] = true;
                 //se em alguma das casas eu encontrar uma peça adviversária eu forço a parada do while.
-                if (Tab.Peca(pos) != null && Tab.Peca(pos).Cor != this.Cor)
+                if (Tab.Peca(pos) != null && Tab.Peca(pos).Cor != Cor)
                 {
                     break;
                 }
@@ -82,7 +83,7 @@ namespace Jogo_Xadrez.play
             {
                 mat[pos.Linha, pos.Coluna] = true;
                 //se em alguma das casas eu encontrar uma peça adviversária eu forço a parada do while.
-                if (Tab.Peca(pos) != null && Tab.Peca(pos).Cor != this.Cor)
+                if (Tab.Peca(pos) != null && Tab.Peca(pos).Cor != Cor)
                 {
                     break;
                 }
@@ -97,7 +98,7 @@ namespace Jogo_Xadrez.play
             while (Tab.ReadPosition(pos) && MovimentoOk(pos))
             {
                 mat[pos.Linha, pos.Coluna] = true;
-                if (Tab.Peca(pos) != null && Tab.Peca(pos).Cor != this.Cor)
+                if (Tab.Peca(pos) != null && Tab.Peca(pos).Cor != Cor)
                 {
                     break;
 
@@ -112,7 +113,7 @@ namespace Jogo_Xadrez.play
             while (Tab.ReadPosition(pos) && MovimentoOk(pos))
             {
                 mat[pos.Linha, pos.Coluna] = true;
-                if (Tab.Peca(pos) != null && Tab.Peca(pos).Cor != this.Cor)
+                if (Tab.Peca(pos) != null && Tab.Peca(pos).Cor != Cor)
                 {
                     break;
 
@@ -128,7 +129,7 @@ namespace Jogo_Xadrez.play
             while (Tab.ReadPosition(pos) && MovimentoOk(pos))
             {
                 mat[pos.Linha, pos.Coluna] = true;
-                if (Tab.Peca(pos) != null && Tab.Peca(pos).Cor != this.Cor)
+                if (Tab.Peca(pos) != null && Tab.Peca(pos).Cor != Cor)
                 {
                     break;
 
@@ -143,7 +144,7 @@ namespace Jogo_Xadrez.play
             while (Tab.ReadPosition(pos) && MovimentoOk(pos))
             {
                 mat[pos.Linha, pos.Coluna] = true;
-                if (Tab.Peca(pos) != null && Tab.Peca(pos).Cor != this.Cor)
+                if (Tab.Peca(pos) != null && Tab.Peca(pos).Cor != Cor)
                 {
                     break;
 

@@ -2,11 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\Jogo_Xadrez",
-    "\\Jogo_Xadrez\\board",
-    "\\Jogo_Xadrez\\conta",
-    "\\Jogo_Xadrez\\menu",
-    "\\Jogo_Xadrez\\play",
-    "\\Jogo_Xadrez\\Properties"
+    "\\Jogo_Xadrez\\conta"
   ],
+  "SelectedNode": "\\Jogo_Xadrez (2)",
   "PreviewInSolutionExplorer": false
 }

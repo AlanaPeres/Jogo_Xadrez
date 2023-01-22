@@ -11,7 +11,9 @@ namespace Jogo_Xadrez
         {
             for (int i = 0; i < Tab.Linhas; i++)
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write(8 - i + " "); // para imprimir o número das linhas.
+                Console.ResetColor();
 
                 for(int j = 0; j < Tab.Colunas; j++) 
                 {
@@ -20,13 +22,15 @@ namespace Jogo_Xadrez
                        
 
                 }
+                
                 Console.WriteLine();
+                
             }
-            
 
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("  a b c d e f g h ");
+            Console.ResetColor();
 
-           
         }
 
         public static void PrintBoard(Board Tab, bool[,] posicoesPossiveis)
@@ -56,7 +60,9 @@ namespace Jogo_Xadrez
                 Console.WriteLine();
             }
 
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("  a b c d e f g h ");
+            Console.ResetColor();
 
             Console.BackgroundColor = fundo;
 

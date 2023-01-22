@@ -20,7 +20,7 @@ namespace Jogo_Xadrez.play
         {
             ChessPieces p = Tab.Peca(pos);
 
-            return p != null && p.Cor != this.Cor;
+            return p != null && p.Cor != Cor;
 
 
         }
@@ -37,17 +37,17 @@ namespace Jogo_Xadrez.play
 
             Position pos = new Position(0, 0);
 
-            if(Cor == Color.Branca)
+            if (Cor == Color.Branca)
             {
                 pos.DefinirValores(Position.Linha - 1, Position.Coluna);
                 if(Tab.ReadPosition(pos) && Livre(pos))
                 {
                     mat[pos.Linha, pos.Coluna] = true;
-
                 }
 
                 pos.DefinirValores(Position.Linha - 2, Position.Coluna);
-                if(Tab.ReadPosition(pos) && Livre(pos) && QuantidadeMovimentos == 0)
+                Position p2 = new Position(pos.Linha - 1, pos.Coluna);   
+                if(Tab.ReadPosition(p2) && Livre(p2) && Tab.ReadPosition(pos) && QuantidadeMovimentos == 0)
                 {
                     mat[pos.Linha, pos.Coluna] = true;
                 }
@@ -79,10 +79,12 @@ namespace Jogo_Xadrez.play
                 }
 
                 pos.DefinirValores(Position.Linha + 2, Position.Coluna);
-                if (Tab.ReadPosition(pos) && Livre(pos) && QuantidadeMovimentos == 0)
+                Position p2 = new Position(pos.Linha + 1, pos.Coluna);
+                if (Tab.ReadPosition(p2) && Livre(p2) && Tab.ReadPosition(pos) && QuantidadeMovimentos == 0)
                 {
                     mat[pos.Linha, pos.Coluna] = true;
                 }
+
 
                 pos.DefinirValores(Position.Linha + 1, Position.Coluna - 1);
                 if (Tab.ReadPosition(pos) && ExisteInimigo(pos))
@@ -90,6 +92,7 @@ namespace Jogo_Xadrez.play
                     mat[pos.Linha, pos.Coluna] = true;
 
                 }
+
 
                 pos.DefinirValores(Position.Linha + 1, Position.Coluna + 1);
                 if (Tab.ReadPosition(pos) && ExisteInimigo(pos))

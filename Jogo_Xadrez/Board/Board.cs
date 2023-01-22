@@ -36,11 +36,14 @@ namespace Jogo_Xadrez.board
             return Matriz[pos.Linha, pos.Coluna];
         }
 
-        public bool existePeca(Position pos)
+        public bool ThereIsChessPiece(Position pos)
         {
             ValidatePosition(pos);
+
             return Peca(pos) != null;
+
         }
+
         public void InsertPiece(ChessPieces p, Position pos)
         {
             if (ThereIsChessPiece(pos))
@@ -73,7 +76,7 @@ namespace Jogo_Xadrez.board
         //Verifica se a posição recebida é válida.
         public bool ReadPosition(Position pos)
         {
-            if(pos.Linha < 0 || pos.Linha >= Linhas || pos.Coluna < 0 || pos.Coluna>= Colunas)
+            if (pos.Linha < 0 || pos.Linha >= Linhas || pos.Coluna < 0 || pos.Coluna >= Colunas)
             {
                 return false;
             }
@@ -96,15 +99,7 @@ namespace Jogo_Xadrez.board
 
         //verifica se existe uma peça em determinada posição.
 
-        public bool ThereIsChessPiece(Position pos)
-        {
-            ValidatePosition(pos);
-
-            return Peca(pos) != null;
-
-        }
-
-
+       
 
     }
 }

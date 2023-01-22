@@ -6,10 +6,10 @@ namespace Jogo_Xadrez.play
 {
     class Cavalo : ChessPieces
     {
-
-        public Cavalo(Board tab, Color cor) : base(tab, cor)
+        private Match Partida;
+        public Cavalo(Board tab, Color cor, Match partida) : base(tab, cor)
         {
-
+            Partida = partida;
         }
 
         public override string ToString()

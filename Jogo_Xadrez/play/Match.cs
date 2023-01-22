@@ -4,6 +4,9 @@ using System.Diagnostics;
 using System.Text;
 using Jogo_Xadrez.board;
 using Jogo_Xadrez.conta;
+using Newtonsoft.Json;
+using System.IO;
+
 
 namespace Jogo_Xadrez.play
 {
@@ -99,7 +102,7 @@ namespace Jogo_Xadrez.play
                         partida.ValidarPosicaoDestino(origem, destino);
 
 
-                        partida.ExecutarJogada(origem, destino, Jogadores);
+                        partida.ExecutarJogada(origem, destino);
 
 
                     }
@@ -160,7 +163,6 @@ namespace Jogo_Xadrez.play
         public void UndoMove(Position origem, Position destino, ChessPieces pecaCapturada)
         {
 
-
             ChessPieces p = Tab.RemovePiece(destino);
 
             p.DecrementarMovimentos();
@@ -180,7 +182,7 @@ namespace Jogo_Xadrez.play
 
 
 
-        public void ExecutarJogada(Position origem, Position destino, List<Contas> Jogadores)
+        public void ExecutarJogada(Position origem, Position destino)
         {
             ChessPieces pecaCapturada = ExecutarMovimento(origem, destino);
 
@@ -207,7 +209,6 @@ namespace Jogo_Xadrez.play
 
                 TheEnd = true;
 
-                AtribuirResultado(Jogadores);
             }
             else
             {
@@ -251,7 +252,7 @@ namespace Jogo_Xadrez.play
 
         public void ValidarPosicaoDestino(Position origem, Position destino)
         {
-            if (!Tab.Peca(origem).MovimentoPossivel(destino))
+            if (!Tab.Peca(origem).MovimentoPossivel(destino)) 
             {
 
                 throw new BoardException("Posição de destino inválida");
@@ -268,12 +269,14 @@ namespace Jogo_Xadrez.play
             if(JogadorAtual == Color.Branca)
             {
                 JogadorAtual = Color.Preta;
+
                 Vez = Jogador2;
 
             }
             else
             {
                 JogadorAtual = Color.Branca;
+
                 Vez = Jogador1;
             }
         }
@@ -399,21 +402,35 @@ namespace Jogo_Xadrez.play
             return true;
         }
 
-        public void AtribuirResultado(List<Contas>Jogadores)
+        public void AtribuirResultado(List<Contas>Jogadores, string filePath)
         {
            
 
             if (JogadorAtual == Color.Branca)
             {
                 Contas shearch = Jogadores.Find(x => x.Nome == Vez);
+
                 shearch.Pontos++;
+
+                string json = JsonConvert.SerializeObject(shearch);
+
+                File.WriteAllText(filePath, json);
+
+
             }
             else
             {
                 Contas shearch = Jogadores.Find(x => x.Nome == Vez);
+
                 shearch.Pontos++;
+
+                string json = JsonConvert.SerializeObject(shearch);
+
+                File.WriteAllText(filePath, json);
             }
 
+            
+          
 
         }
         //Dada uma coluna e linha de xadrez eu vou no tabuleiro da partida, coloco a peça e adiciono esta peça na minha coleção de peças. Quer dizer que esta peça faz parte da minha partida.
@@ -430,14 +447,14 @@ namespace Jogo_Xadrez.play
         //cria a peça e armazena na coleção.
         private void InsertPieces()
         {
-            InsertNewPiece('a', 1, new Torre(Tab, Color.Branca));
-            InsertNewPiece('b', 1, new Cavalo(Tab, Color.Branca));
-            InsertNewPiece('c', 1, new Bispo(Tab, Color.Branca));
-            InsertNewPiece('d', 1, new Dama(Tab, Color.Branca));
+            InsertNewPiece('a', 1, new Torre(Tab, Color.Branca, this));
+            InsertNewPiece('b', 1, new Cavalo(Tab, Color.Branca, this));
+            InsertNewPiece('c', 1, new Bispo(Tab, Color.Branca, this));
+            InsertNewPiece('d', 1, new Dama(Tab, Color.Branca, this));
             InsertNewPiece('e', 1, new Rei(Tab, Color.Branca, this));
-            InsertNewPiece('f', 1, new Bispo(Tab, Color.Branca));
-            InsertNewPiece('g', 1, new Cavalo(Tab, Color.Branca));
-            InsertNewPiece('h', 1, new Torre(Tab, Color.Branca));
+            InsertNewPiece('f', 1, new Bispo(Tab, Color.Branca, this));
+            InsertNewPiece('g', 1, new Cavalo(Tab, Color.Branca, this));
+            InsertNewPiece('h', 1, new Torre(Tab, Color.Branca, this));
             InsertNewPiece('a', 2, new Peao(Tab, Color.Branca, this));
             InsertNewPiece('b', 2, new Peao(Tab, Color.Branca, this));
             InsertNewPiece('c', 2, new Peao(Tab, Color.Branca, this));
@@ -448,14 +465,14 @@ namespace Jogo_Xadrez.play
             InsertNewPiece('h', 2, new Peao(Tab, Color.Branca, this));
 
 
-            InsertNewPiece('a', 8, new Torre(Tab, Color.Preta));
-            InsertNewPiece('b', 8, new Cavalo(Tab, Color.Preta));
-            InsertNewPiece('c', 8, new Bispo(Tab, Color.Preta));
-            InsertNewPiece('d', 8, new Dama(Tab, Color.Preta));
+            InsertNewPiece('a', 8, new Torre(Tab, Color.Preta, this));
+            InsertNewPiece('b', 8, new Cavalo(Tab, Color.Preta, this));
+            InsertNewPiece('c', 8, new Bispo(Tab, Color.Preta, this));
+            InsertNewPiece('d', 8, new Dama(Tab, Color.Preta, this));
             InsertNewPiece('e', 8, new Rei(Tab, Color.Preta, this));
-            InsertNewPiece('f', 8, new Bispo(Tab, Color.Preta));
-            InsertNewPiece('g', 8, new Cavalo(Tab, Color.Preta));
-            InsertNewPiece('h', 8, new Torre(Tab, Color.Preta));
+            InsertNewPiece('f', 8, new Bispo(Tab, Color.Preta, this));
+            InsertNewPiece('g', 8, new Cavalo(Tab, Color.Preta, this));
+            InsertNewPiece('h', 8, new Torre(Tab, Color.Preta, this));
             InsertNewPiece('a', 7, new Peao(Tab, Color.Preta, this));
             InsertNewPiece('b', 7, new Peao(Tab, Color.Preta, this));
             InsertNewPiece('c', 7, new Peao(Tab, Color.Preta, this));

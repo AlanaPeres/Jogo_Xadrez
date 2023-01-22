@@ -6,17 +6,51 @@ using Jogo_Xadrez.menu;
 using Jogo_Xadrez.conta;
 using System.Collections.Generic;
 using System.Threading;
+using System.IO;
+using System.Data;
+using System.Web.Script.Serialization;
+using System.Web.Configuration;
+using Newtonsoft.Json;
+using System.Security.Principal;
+using System.Text.Json;
+using JsonSerializer = System.Text.Json.JsonSerializer;
+using System.Linq.Expressions;
 
 namespace Jogo_Xadrez
 {
     internal class Program
     {
+
+        static void ReadList(List<Contas>Jogadores, string filePath)
+        {
+            string stringJson = File.ReadAllText(filePath);
+
+            if(!String.IsNullOrEmpty(stringJson))
+            {
+                    List<Contas> todosJogadores = JsonSerializer.Deserialize<List<Contas>>(stringJson);
+
+                    todosJogadores.ForEach(usuario => Jogadores.Add(usuario));
+              
+            }
+            
+               
+
+
+            
+        }
+
         static void Main(string[] args)
         {
             List<Contas> Jogadores = new List<Contas>();
 
+            string rootPath = @"C:\Users\alana\source\repos\Jogo_Xadrez\Jogo_Xadrez";
+
+            string filePath = rootPath + "jogadores.txt";
+
+            ReadList(Jogadores, filePath);
+
+
             int opt = 0;
-            
 
             do
             {
@@ -36,22 +70,22 @@ namespace Jogo_Xadrez
                         break;
                     case 1:
 
-                        Contas.Register(Jogadores);
+                        Contas.Register(Jogadores, filePath);
                        
 
                         break;
 
                     case 2:
 
-                        Contas.Login(Jogadores);
 
-                        
+                        Contas.Login(Jogadores, filePath);
 
                         break;
 
                         case 3:
 
-                        //mostrar ranking
+                        Contas.Ranking(Jogadores, filePath);
+
                         break;
 
 
