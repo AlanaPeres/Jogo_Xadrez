@@ -63,7 +63,7 @@ namespace Jogo_Xadrez
                 {
                     case 0:
 
-                        Console.WriteLine("O programa esta sendo encerrado. Volte sempre!! ");
+                        Console.WriteLine("O programa esta sendo encerrado. Te espero em breve!! ");
 
                         break;
                     case 1:

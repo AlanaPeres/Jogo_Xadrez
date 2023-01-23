@@ -19,11 +19,11 @@ namespace Jogo_Xadrez.play
 
             Linha = linha;
         }
+
         // transforma as posições de entrada em posições da Matriz.
-        public Position ToPosition()
-        {
-            return new Position(8 - Linha, Coluna - 'a'); 
-        }
+        public Position ToPosition() => new Position(8 - Linha, Coluna - 'a'); 
+        
+
         public override string ToString() => "" + Coluna + Linha;
         
     }

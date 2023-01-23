@@ -6,11 +6,9 @@ namespace Jogo_Xadrez.play
     class Bispo : ChessPieces
     {
         private Match Partida;
-        public Bispo(Board tab, Color cor, Match partida) : base(tab, cor)
-        {
-            Partida = partida;
-        }
 
+        public Bispo(Board tab, Color cor, Match partida) : base(tab, cor) => Partida = partida;
+      
         public override string ToString() => "B";
 
         private bool MovimentoOk(Position pos)
@@ -24,11 +22,9 @@ namespace Jogo_Xadrez.play
         public override bool[,] MovimentosPossiveis()
         {
             bool[,] mat = new bool[Tab.Linhas, Tab.Colunas];
-
             Position pos = new Position(0,0);
 
             //Bispo se move nas diagonais 
-
             pos.DefinirValores(Position.Linha - 1, Position.Coluna - 1);
             while(Tab.ReadPosition(pos) && MovimentoOk(pos)) 
             {

@@ -382,12 +382,12 @@ namespace Jogo_Xadrez.play
 
                             ChessPieces pecaCapturada = ExecutarMovimento(origem, destino);
 
-                            bool InXeque = TestXequeMate(cor);
+                            bool testeXeque = InXeque(cor);
 
                             UndoMove(origem, destino, pecaCapturada);
                             
                             // caso o movimento tenha retirado o jogador de Xeque retornamos falso.
-                            if (!InXeque)
+                            if (!testeXeque)
                             {
                                 return false;
                             }
@@ -447,40 +447,40 @@ namespace Jogo_Xadrez.play
         //cria a peça e armazena na coleção.
         private void InsertPieces()
         {
-            InsertNewPiece('a', 1, new Torre(Tab, Color.Branca, this));
-            InsertNewPiece('b', 1, new Cavalo(Tab, Color.Branca, this));
-            InsertNewPiece('c', 1, new Bispo(Tab, Color.Branca, this));
-            InsertNewPiece('d', 1, new Dama(Tab, Color.Branca, this));
-            InsertNewPiece('e', 1, new Rei(Tab, Color.Branca, this));
-            InsertNewPiece('f', 1, new Bispo(Tab, Color.Branca, this));
-            InsertNewPiece('g', 1, new Cavalo(Tab, Color.Branca, this));
-            InsertNewPiece('h', 1, new Torre(Tab, Color.Branca, this));
-            InsertNewPiece('a', 2, new Peao(Tab, Color.Branca, this));
-            InsertNewPiece('b', 2, new Peao(Tab, Color.Branca, this));
-            InsertNewPiece('c', 2, new Peao(Tab, Color.Branca, this));
-            InsertNewPiece('d', 2, new Peao(Tab, Color.Branca, this));
-            InsertNewPiece('e', 2, new Peao(Tab, Color.Branca, this));
-            InsertNewPiece('f', 2, new Peao(Tab, Color.Branca, this));
-            InsertNewPiece('g', 2, new Peao(Tab, Color.Branca, this));
-            InsertNewPiece('h', 2, new Peao(Tab, Color.Branca, this));
+            InsertNewPiece('c', 1, new Torre(Tab, Color.Branca, this));
+            //InsertNewPiece('b', 1, new Cavalo(Tab, Color.Branca, this));
+            //InsertNewPiece('c', 1, new Bispo(Tab, Color.Branca, this));
+            //InsertNewPiece('d', 1, new Dama(Tab, Color.Branca, this));
+            InsertNewPiece('d', 1, new Rei(Tab, Color.Branca, this));
+            //InsertNewPiece('f', 1, new Bispo(Tab, Color.Branca, this));
+            //InsertNewPiece('g', 1, new Cavalo(Tab, Color.Branca, this));
+            InsertNewPiece('h', 7, new Torre(Tab, Color.Branca, this));
+            //InsertNewPiece('a', 2, new Peao(Tab, Color.Branca, this));
+            //InsertNewPiece('b', 2, new Peao(Tab, Color.Branca, this));
+            //InsertNewPiece('c', 2, new Peao(Tab, Color.Branca, this));
+            //InsertNewPiece('d', 2, new Peao(Tab, Color.Branca, this));
+            //InsertNewPiece('e', 2, new Peao(Tab, Color.Branca, this));
+            //InsertNewPiece('f', 2, new Peao(Tab, Color.Branca, this));
+            //InsertNewPiece('g', 2, new Peao(Tab, Color.Branca, this));
+            //InsertNewPiece('h', 2, new Peao(Tab, Color.Branca, this));
 
 
-            InsertNewPiece('a', 8, new Torre(Tab, Color.Preta, this));
-            InsertNewPiece('b', 8, new Cavalo(Tab, Color.Preta, this));
-            InsertNewPiece('c', 8, new Bispo(Tab, Color.Preta, this));
-            InsertNewPiece('d', 8, new Dama(Tab, Color.Preta, this));
-            InsertNewPiece('e', 8, new Rei(Tab, Color.Preta, this));
-            InsertNewPiece('f', 8, new Bispo(Tab, Color.Preta, this));
-            InsertNewPiece('g', 8, new Cavalo(Tab, Color.Preta, this));
-            InsertNewPiece('h', 8, new Torre(Tab, Color.Preta, this));
-            InsertNewPiece('a', 7, new Peao(Tab, Color.Preta, this));
-            InsertNewPiece('b', 7, new Peao(Tab, Color.Preta, this));
-            InsertNewPiece('c', 7, new Peao(Tab, Color.Preta, this));
-            InsertNewPiece('d', 7, new Peao(Tab, Color.Preta, this));
-            InsertNewPiece('e', 7, new Peao(Tab, Color.Preta, this));
-            InsertNewPiece('f', 7, new Peao(Tab, Color.Preta, this));
-            InsertNewPiece('g', 7, new Peao(Tab, Color.Preta, this));
-            InsertNewPiece('h', 7, new Peao(Tab, Color.Preta, this));
+            InsertNewPiece('b', 8, new Torre(Tab, Color.Preta, this));
+            //InsertNewPiece('b', 8, new Cavalo(Tab, Color.Preta, this));
+            //InsertNewPiece('c', 8, new Bispo(Tab, Color.Preta, this));
+            //InsertNewPiece('d', 8, new Dama(Tab, Color.Preta, this));
+            InsertNewPiece('a', 8, new Rei(Tab, Color.Preta, this));
+            //InsertNewPiece('f', 8, new Bispo(Tab, Color.Preta, this));
+            //InsertNewPiece('g', 8, new Cavalo(Tab, Color.Preta, this));
+            //InsertNewPiece('h', 8, new Torre(Tab, Color.Preta, this));
+            //InsertNewPiece('a', 7, new Peao(Tab, Color.Preta, this));
+            //InsertNewPiece('b', 7, new Peao(Tab, Color.Preta, this));
+            //InsertNewPiece('c', 7, new Peao(Tab, Color.Preta, this));
+            //InsertNewPiece('d', 7, new Peao(Tab, Color.Preta, this));
+            //InsertNewPiece('e', 7, new Peao(Tab, Color.Preta, this));
+            //InsertNewPiece('f', 7, new Peao(Tab, Color.Preta, this));
+            //InsertNewPiece('g', 7, new Peao(Tab, Color.Preta, this));
+            //InsertNewPiece('h', 7, new Peao(Tab, Color.Preta, this));
 
 
 

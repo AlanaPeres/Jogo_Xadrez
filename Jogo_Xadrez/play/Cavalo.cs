@@ -7,11 +7,9 @@ namespace Jogo_Xadrez.play
     class Cavalo : ChessPieces
     {
         private Match Partida;
-        public Cavalo(Board tab, Color cor, Match partida) : base(tab, cor)
-        {
-            Partida = partida;
-        }
 
+        public Cavalo(Board tab, Color cor, Match partida) : base(tab, cor) => Partida = partida;
+       
         public override string ToString() => "C";
        
 
@@ -26,7 +24,6 @@ namespace Jogo_Xadrez.play
         public override bool[,] MovimentosPossiveis()
         {
             bool[,] mat = new bool[Tab.Linhas, Tab.Colunas];
-
             Position pos = new Position(0, 0);
 
             pos.DefinirValores(Position.Linha - 1, Position.Coluna - 2);
@@ -35,14 +32,11 @@ namespace Jogo_Xadrez.play
                 mat[pos.Linha, pos.Coluna] = true;
             }
 
-
-
             pos.DefinirValores(Position.Linha - 2, Position.Coluna - 1);
             if (Tab.ReadPosition(pos) && MovimentoOk(pos))
             {
                 mat[pos.Linha, pos.Coluna] = true;
             }
-
 
             pos.DefinirValores(Position.Linha - 2, Position.Coluna +1);
             if (Tab.ReadPosition(pos) && MovimentoOk(pos))
@@ -50,13 +44,11 @@ namespace Jogo_Xadrez.play
                 mat[pos.Linha, pos.Coluna] = true;
             }
 
-
             pos.DefinirValores(Position.Linha - 1, Position.Coluna + 2);
             if (Tab.ReadPosition(pos) && MovimentoOk(pos))
             {
                 mat[pos.Linha, pos.Coluna] = true;
             }
-
 
             pos.DefinirValores(Position.Linha + 1, Position.Coluna + 2);
             if (Tab.ReadPosition(pos) && MovimentoOk(pos))
@@ -70,7 +62,6 @@ namespace Jogo_Xadrez.play
             {
                 mat[pos.Linha, pos.Coluna] = true;
             }
-
 
             pos.DefinirValores(Position.Linha +2, Position.Coluna - 1);
             if (Tab.ReadPosition(pos) && MovimentoOk(pos))

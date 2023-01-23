@@ -49,6 +49,7 @@ namespace Jogo_Xadrez.board
             }
             return false;
         }
+
         //testa os movimentos possiveis na matriz e verifica se é true.
         public bool MovimentoPossivel(Position pos)
         {

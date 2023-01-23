@@ -18,18 +18,14 @@ namespace Jogo_Xadrez.conta
        
 
         public string Nome { get; private set; } 
-
         public string Senha { get; private set; } 
-
         public int Pontos { get; set; }
 
 
         public Contas(string nome, string senha, int pontos)
         {
             Nome = nome;
-
             Senha = senha;
-
             Pontos = pontos;
 
 
@@ -50,16 +46,12 @@ namespace Jogo_Xadrez.conta
         public static void  Register(List<Contas> Jogadores, string filePath)
         {
             Console.WriteLine("Escolha um nome de usuário");
-
             string nome = Console.ReadLine();
-
             Console.WriteLine("Escolha uma senha de acesso:");
-
             string senha = Console.ReadLine();
-
             int pontos = 0;
-
             Contas shearch = Jogadores.Find(x => x.Nome == nome);
+
 
             if(shearch != null )
             {
@@ -71,17 +63,11 @@ namespace Jogo_Xadrez.conta
             else
             {
                 Contas novaConta = new Contas(nome, senha, pontos);
-
                 Jogadores.Add(novaConta);
-
                 Console.ForegroundColor = ConsoleColor.Green;
-
                 Console.WriteLine("Jogador cadastrado com sucesso! ");
-
                 Console.ResetColor();
-
                 Thread.Sleep(2000);
-
                 SerelizarJson(Jogadores, filePath);
 
 
@@ -95,28 +81,15 @@ namespace Jogo_Xadrez.conta
         public static void Login(List<Contas> Jogadores, string filePath)
         {
             Console.WriteLine("\nPara iniciar uma nova partida é necessário dois jogadores. ");
-
             Console.WriteLine("Entre com o usuário de cada jogador: ");
-
             Console.WriteLine("\nLOGIN JOGADOR 1: ");
-
             string jogador1 = Console.ReadLine();
-
-
             Console.ForegroundColor = ConsoleColor.Cyan;
-
             Console.WriteLine("\nLOGIN JOGADOR 2: ");
-
-            string jogador2 = Console.ReadLine();
-
-         
+            string jogador2 = Console.ReadLine();        
             Console.ResetColor();
 
-
             int buscarIndex = Jogadores.FindIndex(x => x.Nome == jogador1);
-
-
-
             int buscaIndex2 = Jogadores.FindIndex(x => x.Nome == jogador2);
 
             if(buscarIndex != -1 && buscaIndex2 != -1)
@@ -131,12 +104,9 @@ namespace Jogo_Xadrez.conta
             {
 
                 Console.ForegroundColor = ConsoleColor.Red;
-
                 Console.WriteLine("Não foi possível inicar partida.");
                 Console.WriteLine("Usuário não encontrado. Volte e cadastre os jogadores.");
-
                 Console.ResetColor();
-
                 Thread.Sleep(3000);
 
 
@@ -153,29 +123,23 @@ namespace Jogo_Xadrez.conta
         public static void Ranking(List<Contas> Jogadores, string filePath)
         {
             Console.Clear();
-
             int[] pontos = new int[Jogadores.Count];
-
             List<string> list = new List<string>();
 
 
             for(int i = 0; i < Jogadores.Count; i++)
             {
                 pontos[i] = Jogadores[i].Pontos;
-
                 list.Add(Jogadores[i].Nome);
             }
 
             Array.Sort(pontos);
-
             Array.Reverse(pontos);
 
             for(int j = 0; j < Jogadores.Count; j++)
             {
                 int index = Jogadores.FindIndex(x => x.Pontos == pontos[j] && list.Exists(jogador => x.Nome == jogador));
-
                 Console.WriteLine($"Jogador(a): {Jogadores[index].Nome} |Pontos Acumulados: {pontos[j]}  ");
-
                 list.Remove(Jogadores[index].Nome);
                 
             }
@@ -186,17 +150,11 @@ namespace Jogo_Xadrez.conta
         public static void DeleteUser(List<Contas> Jogadores, string filePath)
         {
             Console.Clear();
-
             Console.WriteLine("\n DELETAR USUÁRIO \n");
-
             Console.WriteLine("User a ser Deletado: ");
-
             string UserDeletado = Console.ReadLine();
-
             Console.WriteLine("Senha: ");
-
             string senha =  Console.ReadLine();
-
             int buscarIndex = Jogadores.FindIndex(x => x.Nome == UserDeletado && Jogadores.Exists(y => y.Senha == senha));
 
 

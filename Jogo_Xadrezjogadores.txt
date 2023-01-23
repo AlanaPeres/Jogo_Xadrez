@@ -1,1 +1,1 @@
-[{"Nome":"joa","Senha":"3","Pontos":0},{"Nome":"douglas","Senha":"1","Pontos":0},{"Nome":"alana","Senha":"1111","Pontos":0}]
+[{"Nome":"joa","Senha":"3","Pontos":0},{"Nome":"douglas","Senha":"1","Pontos":0},{"Nome":"alana","Senha":"1111","Pontos":0},{"Nome":"julia","Senha":"1111","Pontos":0}]

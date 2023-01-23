@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using Jogo_Xadrez.board;
 using Jogo_Xadrez.play;
 namespace Jogo_Xadrez
@@ -14,7 +15,6 @@ namespace Jogo_Xadrez
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write(8 - i + " "); // para imprimir o número das linhas.
                 Console.ResetColor();
-
                 for(int j = 0; j < Tab.Colunas; j++) 
                 {
                     
@@ -22,7 +22,6 @@ namespace Jogo_Xadrez
                        
 
                 }
-                
                 Console.WriteLine();
                 
             }
@@ -63,7 +62,6 @@ namespace Jogo_Xadrez
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("  a b c d e f g h ");
             Console.ResetColor();
-
             Console.BackgroundColor = fundo;
 
         }
@@ -74,29 +72,25 @@ namespace Jogo_Xadrez
         public static ChessPosition ReadPosition()
         {
             string s = Console.ReadLine();
-
             char coluna = s[0];
-
             int linha = int.Parse(s[1] + "");// "" força a converter para string
 
-            if (coluna != 'a' || coluna != 'b' || coluna != 'c' || coluna !=  'd' || coluna != 'e' || coluna != 'f' || coluna != 'g' || coluna != 'h')
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                throw new BoardException("Posição inválida, tente novamente.");
-                Console.ResetColor();
-            }
-            if (linha != 1 || linha != 2 || linha != 3 || linha != 4 || linha != 5 || linha != 6 || linha != 7 || linha != 8 )
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                throw new BoardException("Posição inválida, tente novamente.");
-                Console.ResetColor();
+            //if (coluna != 'a' || coluna != 'b' || coluna != 'c' || coluna !=  'd' || coluna != 'e' || coluna != 'f' || coluna != 'g' || coluna != 'h')
+            //{
+            //    Console.ForegroundColor = ConsoleColor.Red;
+            //    throw new BoardException("\nPosição inválida, tente novamente.");
+            //    Console.ResetColor();
+            //}
+            //if (linha != 1 || linha != 2 || linha != 3 || linha != 4 || linha != 5 || linha != 6 || linha != 7 || linha != 8 )
+            //{
+            //    Console.ForegroundColor = ConsoleColor.Red;
+            //    throw new BoardException("\nPosição inválida, tente novamente.");
+            //    Console.ResetColor();
 
-            }
+            //}
             return new ChessPosition(coluna, linha);
 
         }
-
-
 
         public static void PrintPieces(ChessPieces peca)
         {
@@ -134,11 +128,8 @@ namespace Jogo_Xadrez
         public static void PrintMatch(Match partida)
         {
             Print.PrintBoard(partida.Tab);
-
             Console.WriteLine();
-
             PrintCapturedPieces(partida);
-
             Console.WriteLine("\n\nJOGADA " + partida.Play);
 
             if (!partida.TheEnd)
@@ -147,7 +138,14 @@ namespace Jogo_Xadrez
 
                 if (partida.Xeque)
                 {
-                    Console.WriteLine("XEQUE!");
+
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine(" _  _  ____   __   _  _  ____ ");
+                    Console.WriteLine("( \\/ )(  __) /  \\ / )( \\(  __)");
+                    Console.WriteLine(" )  (  ) _) (  O )) \\/ ( ) _) ");
+                    Console.WriteLine("(_/\\_)(____) \\__\\)\\____/(____)");
+                    Console.ResetColor();
+                    Thread.Sleep(3000);
                 }
 
 
@@ -155,11 +153,18 @@ namespace Jogo_Xadrez
             else
             {
 
-                Console.WriteLine("XEQUEMATE!");
-
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(" _  _  ____   __   _  _  ____        _  _   __   ____  ____ ");
+                Console.WriteLine("( \\/ )(  __) /  \\ / )( \\(  __) ___  ( \\/ ) / _\\ (_  _)(  __)");
+                Console.WriteLine(" )  (  ) _) (  O )) \\/ ( ) _) (___) / \\/ \\/    \\  )(   ) _) ");
+                Console.WriteLine("(_/\\_)(____) \\__\\)\\____/(____)      \\_)(_/\\_/\\_/ (__) (____)");
+                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Vencedor: " + partida.JogadorAtual);
+                Console.ResetColor();
+                Thread.Sleep(3000);
 
-                
+
 
             }
 
