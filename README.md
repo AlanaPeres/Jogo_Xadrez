@@ -10,7 +10,7 @@ O objetivo é dar Xeque-Mate no oponente e para isso é necessário não só con
 
 
 O projeto é baseado no jogo de xadrez tradicional desenvolvido para console. 
-O jogo foi criado utilizando a linguagem de programação C#, seguindo as instruções do curso de Programação orientada a objetos do professor @acenlio e implementado seguindo os conhecimentos adquiridos na formação de desenvolvedores Full Stacks da Imã Learning Place.
+O jogo foi criado utilizando a linguagem de programação C#, seguindo as instruções do curso de Programação orientada a objetos do professor @acenlio e implementado seguindo os conhecimentos adquiridos na formação de desenvolvedores Full Stack da Imã Learning Place.
 
 <h2>COMO JOGAR</h2>
 
