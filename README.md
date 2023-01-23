@@ -6,13 +6,13 @@ Xadrez é um jogo de estratégia que inclui dois participantes. No xadrez, cada 
 
 O objetivo é dar Xeque-Mate no oponente e para isso é necessário não só conhecer as regras, mas também saber desenvolver uma estratégia, e implementá-la através de lances de desenvolvimento e de golpes táticos.
 
-<h2>O PROJETO</h2>
+<h2>:briefcase: O PROJETO</h2>
 
 
 O projeto é baseado no jogo de xadrez tradicional desenvolvido para console. 
 O jogo foi criado utilizando a linguagem de programação C#, seguindo as instruções do curso de Programação orientada a objetos do professor @acenlio e implementado seguindo os conhecimentos adquiridos na formação de desenvolvedores Full Stack da Imã Learning Place.
 
-<h2>COMO JOGAR</h2>
+<h2>:red_circle:COMO JOGAR</h2>
 
 Para jogar é necessário estar cadastrado, então é só selecionar a opção 1 do menu e escolher um nome de usuário e senha. Caso o login escolhido não esteja disponível será impresso uma mensagem na tela. 
 
