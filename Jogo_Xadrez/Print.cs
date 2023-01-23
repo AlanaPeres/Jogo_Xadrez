@@ -186,14 +186,14 @@ namespace Jogo_Xadrez
 
         public static void PrintCollection(HashSet<ChessPieces> Collection)
         {
-            Console.Write("[");
+            //Console.Write("[");
 
             foreach(ChessPieces x in Collection)
             {
                 Console.Write(x + " ");
             }
 
-            Console.Write("]");
+            //Console.Write("]");
 
         }
     }

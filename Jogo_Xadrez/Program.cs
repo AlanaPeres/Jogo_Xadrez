@@ -50,6 +50,8 @@ namespace Jogo_Xadrez
             ReadList(Jogadores, filePath);
 
 
+
+
             int opt = 0;
 
             do
@@ -71,6 +73,7 @@ namespace Jogo_Xadrez
                     case 1:
 
                         Contas.Register(Jogadores, filePath);
+                        Contas.Alterar(Jogadores, filePath);
                        
 
                         break;
@@ -90,7 +93,8 @@ namespace Jogo_Xadrez
 
 
                     case 4:
-                        //excluir resetar jogador.
+
+                        Contas.DeleteUser(Jogadores, filePath);
                         break;
 
                        default:

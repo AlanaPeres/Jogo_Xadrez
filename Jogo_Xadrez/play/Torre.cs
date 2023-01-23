@@ -12,10 +12,8 @@ namespace Jogo_Xadrez.play
             Partida = partida;
         }
 
-        public override string ToString()
-        {
-            return "T";
-        }
+        public override string ToString() => "T";
+       
         private bool MovimentOk(Position pos)
         {
             ChessPieces p = Tab.Peca(pos);
