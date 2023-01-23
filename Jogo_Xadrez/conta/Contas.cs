@@ -183,17 +183,6 @@ namespace Jogo_Xadrez.conta
             Thread.Sleep(3000);
         }
 
-
-        public static void Alterar(List<Contas> Jogadores, string filePath)
-        {
-            Contas alterar = Jogadores.Find(x => x.Nome == "alana");
-            alterar.Pontos++;
-            SerelizarJson(Jogadores, filePath);
-
-            
-        }
-
-
         public static void DeleteUser(List<Contas> Jogadores, string filePath)
         {
             Console.Clear();

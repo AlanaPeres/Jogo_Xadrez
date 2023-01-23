@@ -79,7 +79,20 @@ namespace Jogo_Xadrez
 
             int linha = int.Parse(s[1] + "");// "" força a converter para string
 
-            return new ChessPosition(coluna, linha); 
+            if (coluna != 'a' || coluna != 'b' || coluna != 'c' || coluna !=  'd' || coluna != 'e' || coluna != 'f' || coluna != 'g' || coluna != 'h')
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                throw new BoardException("Posição inválida, tente novamente.");
+                Console.ResetColor();
+            }
+            if (linha != 1 || linha != 2 || linha != 3 || linha != 4 || linha != 5 || linha != 6 || linha != 7 || linha != 8 )
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                throw new BoardException("Posição inválida, tente novamente.");
+                Console.ResetColor();
+
+            }
+            return new ChessPosition(coluna, linha);
 
         }
 

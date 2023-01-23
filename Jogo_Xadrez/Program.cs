@@ -33,10 +33,6 @@ namespace Jogo_Xadrez
               
             }
             
-               
-
-
-            
         }
 
         static void Main(string[] args)
@@ -73,7 +69,7 @@ namespace Jogo_Xadrez
                     case 1:
 
                         Contas.Register(Jogadores, filePath);
-                        Contas.Alterar(Jogadores, filePath);
+                      
                        
 
                         break;
