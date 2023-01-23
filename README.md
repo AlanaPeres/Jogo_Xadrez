@@ -24,3 +24,6 @@ A cada rodada o programa verifica se o jogador atual está em posição de "XEQU
 A opção 3 do menu inicial apresenta o ranking ordenado da pontuação de todos os jogadores cadastrados.
 
 A opção quatro serve para deletar um usuário e para isso é necessário informar o user e a senha de cadastro.
+
+
+🚧 O projeto ainda está sendo construído e novas implementações estarão disponíveis em breve com as jogadas especiais. 🚧
