@@ -197,7 +197,6 @@ namespace Jogo_Xadrez.play
 
             }
 
-
         }        
 
         private void TrocaVez()
@@ -324,7 +323,6 @@ namespace Jogo_Xadrez.play
                                 return false;
                             }
 
-
                         }
 
                     }
@@ -338,21 +336,18 @@ namespace Jogo_Xadrez.play
         public void AtribuirResultado(List<Contas>Jogadores, string filePath)
         {
            
-
             if (JogadorAtual == Color.Branca)
             {
                 Contas shearch = Jogadores.Find(x => x.Nome == Vez);
                 shearch.Pontos++;
-                string json = JsonConvert.SerializeObject(shearch);
-                File.WriteAllText(filePath, json);
+                Contas.SerelizarJson(Jogadores, filePath);
 
             }
             else
             {
                 Contas shearch = Jogadores.Find(x => x.Nome == Vez);
                 shearch.Pontos++;
-                string json = JsonConvert.SerializeObject(shearch);
-                File.WriteAllText(filePath, json);
+                Contas.SerelizarJson(Jogadores, filePath);
             }
                   
         }
@@ -392,7 +387,7 @@ namespace Jogo_Xadrez.play
             InsertNewPiece('a', 8, new Rei(Tab, Color.Preta, this));
             //InsertNewPiece('f', 8, new Bispo(Tab, Color.Preta, this));
             //InsertNewPiece('g', 8, new Cavalo(Tab, Color.Preta, this));
-            //InsertNewPiece('h', 8, new Torre(Tab, Color.Preta, this));
+            InsertNewPiece('h', 8, new Torre(Tab, Color.Preta, this));
             //InsertNewPiece('a', 7, new Peao(Tab, Color.Preta, this));
             //InsertNewPiece('b', 7, new Peao(Tab, Color.Preta, this));
             //InsertNewPiece('c', 7, new Peao(Tab, Color.Preta, this));

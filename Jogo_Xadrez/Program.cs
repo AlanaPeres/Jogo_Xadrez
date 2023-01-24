@@ -23,11 +23,12 @@ namespace Jogo_Xadrez
 
         static void ReadList(List<Contas>Jogadores, string filePath)
         {
-            string stringJson = File.ReadAllText(filePath);
+            dynamic stringJson = File.ReadAllText(filePath);
 
             if(!String.IsNullOrEmpty(stringJson))
             {
                     List<Contas> todosJogadores = JsonSerializer.Deserialize<List<Contas>>(stringJson);
+
                     todosJogadores.ForEach(usuario => Jogadores.Add(usuario));
               
             }
@@ -37,6 +38,7 @@ namespace Jogo_Xadrez
         static void Main(string[] args)
         {
             List<Contas> Jogadores = new List<Contas>();
+          
             string rootPath = @"C:\Users\alana\source\repos\Jogo_Xadrez\Jogo_Xadrez";
             string filePath = rootPath + "jogadores.txt";
             ReadList(Jogadores, filePath);

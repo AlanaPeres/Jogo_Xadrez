@@ -14,9 +14,7 @@ using JsonSerializer = System.Text.Json.JsonSerializer;
 namespace Jogo_Xadrez.conta
 {
     internal class Contas
-    {
-       
-
+    {      
         public string Nome { get; private set; } 
         public string Senha { get; private set; } 
         public int Pontos { get; set; }
@@ -27,16 +25,12 @@ namespace Jogo_Xadrez.conta
             Nome = nome;
             Senha = senha;
             Pontos = pontos;
-
-
         }
 
-        public override string ToString()
-        {
-            return $"User: {Nome} | Pontos {Pontos}";
-        }
+        public override string ToString() => $"User: {Nome} | Pontos {Pontos}";
+      
 
-        static void SerelizarJson(List<Contas>Jogadores, string filePath)
+        public static void SerelizarJson(List<Contas>Jogadores, string filePath)
         {
             string jsonString = JsonSerializer.Serialize(Jogadores);
             File.WriteAllText(filePath, jsonString);
@@ -70,10 +64,7 @@ namespace Jogo_Xadrez.conta
                 Thread.Sleep(2000);
                 SerelizarJson(Jogadores, filePath);
 
-
-
             }
-
             
         }
        
@@ -108,7 +99,6 @@ namespace Jogo_Xadrez.conta
                 Console.WriteLine("Usuário não encontrado. Volte e cadastre os jogadores.");
                 Console.ResetColor();
                 Thread.Sleep(3000);
-
 
             }
 
