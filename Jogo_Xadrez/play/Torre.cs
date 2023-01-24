@@ -7,10 +7,8 @@ namespace Jogo_Xadrez.play
     class Torre : ChessPieces
     {
         private Match Partida;
-        public Torre(Board tab, Color cor, Match partida) : base(tab, cor)
-        {
-            Partida = partida;
-        }
+
+        public Torre(Board tab, Color cor, Match partida) : base(tab, cor) => Partida = partida;
 
         public override string ToString() => "T";
        
@@ -23,9 +21,7 @@ namespace Jogo_Xadrez.play
         public override bool[,] MovimentosPossiveis()
         {
             bool[,] mat = new bool[Tab.Linhas, Tab.Colunas];
-
             Position pos = new Position(0, 0);
-
 
             //acima
             pos.DefinirValores(Position.Linha - 1, Position.Coluna);

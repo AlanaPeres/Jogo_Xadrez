@@ -98,7 +98,7 @@ namespace Jogo_Xadrez.conta
 
                 Match.Jogador2 = jogador2;
 
-                Match.StartPlay(Jogadores);
+                Match.StartPlay(Jogadores, filePath);
             }
             else
             {

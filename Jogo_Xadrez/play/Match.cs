@@ -12,59 +12,39 @@ namespace Jogo_Xadrez.play
 {
     internal class Match 
     {
-        //mecânica do jogo 
 
         public Board Tab { get; private set; }
-
         public int Play { get; private set; }
-
         public Color JogadorAtual { get; private set; }
-
         public  static string Vez { get; private set; }
-
         public bool TheEnd { get; private set; }
-
         private HashSet<ChessPieces> Pecas;
-
         private HashSet<ChessPieces> PecasCapturadas;
-
         public bool Xeque { get; private set; }
-
         public static string Jogador1;   
-
         public static string Jogador2;
 
         public Match()
         {
             Tab = new Board(8,8);
-
             Play = 1;
-
             JogadorAtual = Color.Branca; // QUEM INICIA JOGANDO É SEMPRE QUEM ESTÁ COM AS PEÇAS BRANCAS.
-
             Vez = Jogador1;
-
             Jogador2 = "";
-
             TheEnd = false;
-
             Xeque = false;
-
             Pecas = new HashSet<ChessPieces>();
-
             PecasCapturadas = new HashSet<ChessPieces>();
 
             InsertPieces();
 
-
         }
 
-        public static void StartPlay(List<Contas> Jogadores)
+        public static void StartPlay(List<Contas> Jogadores, string filePath)
         {
             try
             {
                 Board Tab = new Board(8, 8);
-
                 Match partida = new Match();
 
 
@@ -73,81 +53,53 @@ namespace Jogo_Xadrez.play
                     try
                     {
                         Console.Clear();
-
-
                         Print.PrintMatch(partida);
-
-
                         Console.WriteLine();
-
-                        Console.Write("Digite a posição de origem: ");
-                
-
+                        Console.Write("Digite a posição de origem: ");             
                         Position origem = Print.ReadPosition().ToPosition();
-
                         partida.ValidarPosicaoOrigem(origem);
 
                         //a partir da posição de origem eu pego todos os movimentos possívei e guardo dentro desta matriz.
                         bool[,] posicoesPossiveis = partida.Tab.Peca(origem).MovimentosPossiveis();
 
                         Console.Clear();
-
                         Print.PrintBoard(partida.Tab, posicoesPossiveis);
-
-
                         Console.Write("Digite a posição de Destino: ");
-
                         Position destino = Print.ReadPosition().ToPosition();
-
                         partida.ValidarPosicaoDestino(origem, destino);
-
-
                         partida.ExecutarJogada(origem, destino);
-
 
                     }
                     catch (BoardException e)
                     {
                         Console.WriteLine(e.Message);
-
                         Console.ReadLine();
 
                     }
 
-
-
-
-
                 }
 
                 Console.Clear();
-
                 Print.PrintMatch(partida);
-
+                partida.AtribuirResultado(Jogadores, filePath);
 
             }
             catch (BoardException e)
             {
                 Console.WriteLine(e.Message);
             }
-
-     
-
             Console.ReadLine();
         }
 
 
-        //Tab.RemovePiece(destino) se tiver alguma peça será retirada.
-
+        
         //se eu capturar alguma peça eu armazeno esta peça na minha coleção de Peças capturadas.
         public ChessPieces ExecutarMovimento(Position origem, Position destino)
         {
+            //Tab.RemovePiece(destino) se tiver alguma peça será retirada.
             ChessPieces p = Tab.RemovePiece(origem);
-
             p.IncrementarMovimentos();
-
             ChessPieces pecaCapturada = Tab.RemovePiece(destino);
-
             Tab.InsertPiece(p, destino);
 
             if (pecaCapturada != null)
@@ -164,9 +116,7 @@ namespace Jogo_Xadrez.play
         {
 
             ChessPieces p = Tab.RemovePiece(destino);
-
             p.DecrementarMovimentos();
-
            
             // Se foi capturada alguma peça eu insiro ela novamente na posição de destino e removo ela da minha coleção de peças Capturadas.
             if(pecaCapturada != null)
@@ -175,12 +125,8 @@ namespace Jogo_Xadrez.play
 
                 PecasCapturadas.Remove(pecaCapturada);
             }
-
             Tab.InsertPiece(p, origem);
-
         }
-
-
 
         public void ExecutarJogada(Position origem, Position destino)
         {
@@ -188,9 +134,7 @@ namespace Jogo_Xadrez.play
 
             if (InXeque(JogadorAtual))
             {
-
                 UndoMove(origem, destino, pecaCapturada);
-
                 throw new BoardException("Você não pode se colocar em Xeque!");
             }
 
@@ -229,23 +173,17 @@ namespace Jogo_Xadrez.play
                 throw new BoardException("Não existe peça na posição escolhida");
             }
 
-
-
             //valida se a peça de origem possui a mesma cor do jogador atual.
             if(JogadorAtual != Tab.Peca(pos).Cor)
             {
                 throw new BoardException("A peça de origem escolhida não pertence ao jogador atual.");
             }
 
-
             //valida se existe movimentos disponíveis.
             if (!Tab.Peca(pos).ExisteMovimentosPossiveis())
             {
                 throw new BoardException("Não há movimentos possíveis para a peça de origem escolhida");
             }
-
-
-
 
         }
 
@@ -260,9 +198,7 @@ namespace Jogo_Xadrez.play
             }
 
 
-        }
-
-        
+        }        
 
         private void TrocaVez()
         {
@@ -359,7 +295,7 @@ namespace Jogo_Xadrez.play
         }
 
         //Esse método vai passar na matriz de possíveis movimentos para verificar se é possível sair do Xeque.
-        public bool TestXequeMate(Color cor)
+        public bool TestXequeMate(Color cor )
         {
             if (!InXeque(cor))
             {
@@ -377,13 +313,9 @@ namespace Jogo_Xadrez.play
                         if (mat[i, j])
                         {
                             Position origem = x.Position;
-
                             Position destino = new Position(i, j);
-
                             ChessPieces pecaCapturada = ExecutarMovimento(origem, destino);
-
                             bool testeXeque = InXeque(cor);
-
                             UndoMove(origem, destino, pecaCapturada);
                             
                             // caso o movimento tenha retirado o jogador de Xeque retornamos falso.
@@ -400,6 +332,7 @@ namespace Jogo_Xadrez.play
             }
             // infelizmente é XequeMate.
             return true;
+            
         }
 
         public void AtribuirResultado(List<Contas>Jogadores, string filePath)
@@ -409,38 +342,25 @@ namespace Jogo_Xadrez.play
             if (JogadorAtual == Color.Branca)
             {
                 Contas shearch = Jogadores.Find(x => x.Nome == Vez);
-
                 shearch.Pontos++;
-
                 string json = JsonConvert.SerializeObject(shearch);
-
                 File.WriteAllText(filePath, json);
-
 
             }
             else
             {
                 Contas shearch = Jogadores.Find(x => x.Nome == Vez);
-
                 shearch.Pontos++;
-
                 string json = JsonConvert.SerializeObject(shearch);
-
                 File.WriteAllText(filePath, json);
             }
-
-            
-          
-
+                  
         }
         //Dada uma coluna e linha de xadrez eu vou no tabuleiro da partida, coloco a peça e adiciono esta peça na minha coleção de peças. Quer dizer que esta peça faz parte da minha partida.
         public void InsertNewPiece(char coluna, int linha, ChessPieces peca)
         {
-
             Tab.InsertPiece(peca, new ChessPosition(coluna, linha).ToPosition());
-
             Pecas.Add(peca);
-
         }
 
 
@@ -481,10 +401,6 @@ namespace Jogo_Xadrez.play
             //InsertNewPiece('f', 7, new Peao(Tab, Color.Preta, this));
             //InsertNewPiece('g', 7, new Peao(Tab, Color.Preta, this));
             //InsertNewPiece('h', 7, new Peao(Tab, Color.Preta, this));
-
-
-
-
 
         }
     }

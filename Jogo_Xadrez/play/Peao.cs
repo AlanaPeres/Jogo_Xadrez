@@ -6,31 +6,23 @@ namespace Jogo_Xadrez.play
     internal class Peao : ChessPieces
     {
         private Match Partida;
-        public Peao(Board tab, Color cor, Match partida) : base(tab, cor)
-        {
-           Partida = partida;
-        }
 
+        public Peao(Board tab, Color cor, Match partida) : base(tab, cor) => Partida = partida;
+       
         public override string ToString() => "P";
         
 
        private bool  ExisteInimigo(Position pos)
         {
             ChessPieces p = Tab.Peca(pos);
-
             return p != null && p.Cor != Cor;
-
-
         }
-
 
         private bool Livre(Position pos) => Tab.Peca(pos) == null;
        
-
         public override bool[,] MovimentosPossiveis()
         {
             bool[,] mat = new bool[Tab.Linhas, Tab.Colunas];
-
             Position pos = new Position(0, 0);
 
             if (Cor == Color.Branca)

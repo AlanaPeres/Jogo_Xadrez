@@ -16,11 +16,9 @@ namespace Jogo_Xadrez
                 Console.Write(8 - i + " "); // para imprimir o número das linhas.
                 Console.ResetColor();
                 for(int j = 0; j < Tab.Colunas; j++) 
-                {
-                    
+                {                   
                         Print.PrintPieces(Tab.Peca(i, j));
-                       
-
+                      
                 }
                 Console.WriteLine();
                 
@@ -94,7 +92,6 @@ namespace Jogo_Xadrez
 
         public static void PrintPieces(ChessPieces peca)
         {
-
             if (peca == null)
             {
                 Console.Write("- ");
@@ -123,8 +120,6 @@ namespace Jogo_Xadrez
         }
 
 
-
-
         public static void PrintMatch(Match partida)
         {
             Print.PrintBoard(partida.Tab);
@@ -148,7 +143,6 @@ namespace Jogo_Xadrez
                     Thread.Sleep(3000);
                 }
 
-
             }
             else
             {
@@ -163,55 +157,37 @@ namespace Jogo_Xadrez
                 Console.WriteLine("Vencedor: " + partida.JogadorAtual);
                 Console.ResetColor();
                 Thread.Sleep(3000);
-
-
+                
 
             }
 
            
         }
 
-
-
-
-
         public static void PrintCapturedPieces(Match partida)
         {
             
             Console.WriteLine("Peças capturadas no jogo: ");
-
             Console.Write("Brancas: ");
-
             PrintCollection(partida.CapturedPieces(Color.Branca));
-
             Console.WriteLine();
-
             Console.Write("Pretas: ");
-
             ConsoleColor aux = Console.ForegroundColor;
-
             Console.ForegroundColor = ConsoleColor.Cyan;
-
             PrintCollection(partida.CapturedPieces(Color.Preta));
-
             Console.ForegroundColor = aux;
-
             Console.WriteLine();
-
-
-           
+          
         }
 
         public static void PrintCollection(HashSet<ChessPieces> Collection)
         {
-            //Console.Write("[");
 
             foreach(ChessPieces x in Collection)
             {
                 Console.Write(x + " ");
             }
 
-            //Console.Write("]");
 
         }
     }

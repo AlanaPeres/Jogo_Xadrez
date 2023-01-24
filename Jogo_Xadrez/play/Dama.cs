@@ -6,14 +6,11 @@ namespace Jogo_Xadrez.play
     class Dama : ChessPieces
     {
         private Match Partida;
-        public Dama(Board Tab, Color cor, Match partida) : base(Tab, cor)
-        {
-            Partida = partida;
-        }
 
+        public Dama(Board Tab, Color cor, Match partida) : base(Tab, cor) => Partida = partida;
+        
         public override string ToString() => "D";
         
-
         private bool MovimentoOk(Position pos)
         {
             ChessPieces p = Tab.Peca(pos);
@@ -41,9 +38,7 @@ namespace Jogo_Xadrez.play
                 //caso eu não encontre outra peça adversária eu continuo verificando acima.
                 pos.DefinirValores(pos.Linha - 1, pos.Coluna);
 
-
             }
-
 
             //abaixo
             pos.DefinirValores(Position.Linha + 1, Position.Coluna);
@@ -59,7 +54,6 @@ namespace Jogo_Xadrez.play
                 pos.DefinirValores(pos.Linha + 1, pos.Coluna);
             }
 
-
             //direita
             pos.DefinirValores(Position.Linha, Position.Coluna + 1);
             while (Tab.ReadPosition(pos) && MovimentoOk(pos))
@@ -74,7 +68,6 @@ namespace Jogo_Xadrez.play
                 pos.DefinirValores(pos.Linha, pos.Coluna + 1);
             }
 
-
             //esquerda
             pos.DefinirValores(Position.Linha, Position.Coluna - 1);
             while (Tab.ReadPosition(pos) && MovimentoOk(pos))
@@ -88,7 +81,6 @@ namespace Jogo_Xadrez.play
 
                 pos.DefinirValores(pos.Linha, pos.Coluna - 1);
                 //caso eu não encontre outra peça adversária eu continuo verificando a esquerda
-
             }
 
             //noroeste

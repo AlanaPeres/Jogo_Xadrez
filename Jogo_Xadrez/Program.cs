@@ -28,7 +28,6 @@ namespace Jogo_Xadrez
             if(!String.IsNullOrEmpty(stringJson))
             {
                     List<Contas> todosJogadores = JsonSerializer.Deserialize<List<Contas>>(stringJson);
-
                     todosJogadores.ForEach(usuario => Jogadores.Add(usuario));
               
             }
@@ -38,83 +37,42 @@ namespace Jogo_Xadrez
         static void Main(string[] args)
         {
             List<Contas> Jogadores = new List<Contas>();
-
             string rootPath = @"C:\Users\alana\source\repos\Jogo_Xadrez\Jogo_Xadrez";
-
             string filePath = rootPath + "jogadores.txt";
-
             ReadList(Jogadores, filePath);
-
-
-
 
             int opt = 0;
 
             do
             {
                 Console.Clear();
-
                 Menus.ShowMenu();
-
                 bool converterEntrada = int.TryParse(Console.ReadLine(), out opt);
-
 
                 switch (opt)
                 {
-                    case 0:
+                    case 0: Console.WriteLine("O programa esta sendo encerrado. Te espero em breve!! "); break;
 
-                        Console.WriteLine("O programa esta sendo encerrado. Te espero em breve!! ");
+                    case 1: Contas.Register(Jogadores, filePath); break;
 
+                    case 2: Contas.Login(Jogadores, filePath); break;
+
+                    case 3: Contas.Ranking(Jogadores, filePath); break;
+
+                    case 4: Contas.DeleteUser(Jogadores, filePath); break;
+
+                    default:
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Opção inválida, tente novamente.");
+                            Console.ResetColor();
+                            Thread.Sleep(3000);
                         break;
-                    case 1:
-
-                        Contas.Register(Jogadores, filePath);
-                      
-                       
-
-                        break;
-
-                    case 2:
-
-
-                        Contas.Login(Jogadores, filePath);
-
-                        break;
-
-                        case 3:
-
-                        Contas.Ranking(Jogadores, filePath);
-
-                        break;
-
-
-                    case 4:
-
-                        Contas.DeleteUser(Jogadores, filePath);
-                        break;
-
-                       default:
-
-                                 
-                                 Console.ForegroundColor = ConsoleColor.Red;
-
-                                 Console.WriteLine("Opção inválida, tente novamente.");
-
-                                 Console.ResetColor();
-
-                                 Thread.Sleep(3000);
-                        break;
-
-
 
                 }
-
-
-
 
             } while (opt != 0);
 
             
         }
     }
-}
+} 
