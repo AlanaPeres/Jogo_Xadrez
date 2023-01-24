@@ -40,7 +40,7 @@ namespace Jogo_Xadrez
             List<Contas> Jogadores = new List<Contas>();
           
             string rootPath = @"C:\Users\alana\source\repos\Jogo_Xadrez\Jogo_Xadrez";
-            string filePath = rootPath + "jogadores.txt";
+            string filePath = rootPath + "jogadores.json";
             ReadList(Jogadores, filePath);
 
             int opt = 0;
