@@ -8,6 +8,7 @@ namespace Jogo_Xadrez.play
     {
         private Match Partida;
 
+        //esta repassando a instrução do tabuleiro e da cor para o construtor da classe mãe
         public Rei(Board tab,Color cor, Match partida) : base(tab,cor) => Partida = partida;
       
         public override string ToString() => "R";

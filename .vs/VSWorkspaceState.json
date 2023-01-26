@@ -1,8 +1,13 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Jogo_Xadrez"
+    "\\Jogo_Xadrez",
+    "\\Jogo_Xadrez\\bin",
+    "\\Jogo_Xadrez\\board",
+    "\\Jogo_Xadrez\\conta",
+    "\\Jogo_Xadrez\\play",
+    "\\packages"
   ],
-  "SelectedNode": "\\Jogo_Xadrez\\Program.cs",
+  "SelectedNode": "\\Jogo_Xadrez\\board\\Board.cs",
   "PreviewInSolutionExplorer": false
 }

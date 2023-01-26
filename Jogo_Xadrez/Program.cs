@@ -24,11 +24,9 @@ namespace Jogo_Xadrez
         static void ReadList(List<Contas>Jogadores, string filePath)
         {
             dynamic stringJson = File.ReadAllText(filePath);
-
             if(!String.IsNullOrEmpty(stringJson))
             {
                     List<Contas> todosJogadores = JsonSerializer.Deserialize<List<Contas>>(stringJson);
-
                     todosJogadores.ForEach(usuario => Jogadores.Add(usuario));
               
             }

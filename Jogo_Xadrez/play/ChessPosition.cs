@@ -13,6 +13,7 @@ namespace Jogo_Xadrez.play
         public char Coluna { get; set; }
         public int Linha { get; set; }
 
+        
         public ChessPosition(char coluna, int linha)
         {
             Coluna = coluna;
@@ -20,7 +21,7 @@ namespace Jogo_Xadrez.play
             Linha = linha;
         }
 
-        // transforma as posições de entrada em posições da Matriz.
+        // transforma as posições de entrada que está no contexto do xadrez em posições da Matriz.
         public Position ToPosition() => new Position(8 - Linha, Coluna - 'a'); 
         
 

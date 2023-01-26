@@ -36,8 +36,9 @@ namespace Jogo_Xadrez
             ConsoleColor corDeFundoAlterada = ConsoleColor.DarkGreen;
             for (int i = 0; i < Tab.Linhas; i++)
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write(8 - i + " "); // para imprimir o número das linhas.
-
+                Console.ResetColor();
                 for (int j = 0; j < Tab.Colunas; j++)
                 {
 
